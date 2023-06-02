@@ -2,9 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import Select from "react-select";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import FilteringOptions from "./FilteringOptions";
 
 function InputPage() {
+  // 어빌리티 상태관리
   const [firstAbility, setFirstAbility] = React.useState<any>("");
   const [firstOption, setFirstOption] = React.useState<any>("");
   const [firstValue, setFirstValue] = React.useState<any>("");
@@ -15,32 +17,85 @@ function InputPage() {
   const [thirdOption, setThirdOption] = React.useState<any>("");
   const [thirdValue, setThirdValue] = React.useState<any>("");
 
+  // 스텟 입력 관리
+  const [server, setServer] = React.useState("");
+  const [level, setLevel] = React.useState(0);
+  const [myClass, setMyClass] = React.useState("");
+  const [hp, setHp] = React.useState(0);
+  const [str, setStr] = React.useState(0);
+  const [dex, setDex] = React.useState(0);
+  const [int, setInt] = React.useState(0);
+  const [luk, setLuk] = React.useState(0);
+  const [noYongsaStat, setNoYongsaStat] = React.useState(0);
+  const [higherAtk, setHigherAtk] = React.useState(0);
+  const [lowerAtk, setLowerAtk] = React.useState(0);
+  const [dmg, setDmg] = React.useState(0);
+  const [bossDmg, setBossDmg] = React.useState(0);
+  const [buffDuration, setBuffDuration] = React.useState(0);
+  const [ignoreDef, setIgnoreDef] = React.useState(0);
+  const [criticalDmg, setCriticalDmg] = React.useState(0);
+  const [atk, setAtk] = React.useState(0);
+  const [magicAtk, setMagicAtk] = React.useState(0);
+  const [weaponAtk, setWeaponAtk] = React.useState(0);
+  const [weaponMagicAtk, setWeaponMagicAtk] = React.useState(0);
+  const [atkPercent, setAtkPercent] = React.useState(0);
+  const [maginAtkPercent, setMagicAtkPercent] = React.useState(0);
+  const [mercedesUnion, setMercedesUnion] = React.useState(0);
+  const [wildhunterUnion, setWildhunterUnion] = React.useState(0);
+
+  // 데이터를 제출하기 위해 정리하는 함수
+  function submitData() {
+    const data = {
+      server: server,
+      level: level,
+      myClass: myClass,
+      hp: hp,
+      str: str,
+      dex: dex,
+      int: int,
+      luk: luk,
+      noYongsaStat: noYongsaStat,
+      higherAtk: higherAtk,
+      lowerAtk: lowerAtk,
+      dmg: dmg,
+      bossDmg: bossDmg,
+      buffDuration: buffDuration,
+      ignoreDef: ignoreDef,
+      criticalDmg: criticalDmg,
+      atk: atk,
+      magicAtk: magicAtk,
+      weaponAtk: weaponAtk,
+      weaponMagicAtk: weaponMagicAtk,
+      atkPercent: atkPercent,
+      maginAtkPercent: maginAtkPercent,
+      mercedesUnion: mercedesUnion,
+      wildhunterUnion: wildhunterUnion,
+      firstAbility: [firstAbility, firstValue],
+      secondAbility: [secondAbility, secondValue],
+      thirdAbility: [thirdAbility, thirdValue],
+    };
+    console.log(data);
+    return data;
+  }
+
+  // 첫번째 줄 어빌리티
   React.useEffect(() => {
-    // 첫번째 줄 어빌리티
     setFirstValue("");
     if (firstAbility.includes("재사용")) {
       const selectedCategory: keyof typeof FilteringOptions.numbers =
         "reset_Legendary";
-      setFirstOption(FilteringOptions.numbers[selectedCategory]);
-    } else if (firstAbility.includes("버프")) {
-      const selectedCategory: keyof typeof FilteringOptions.numbers =
-        "buffMaintain_Legendary";
       setFirstOption(FilteringOptions.numbers[selectedCategory]);
     } else {
       setFirstOption([]);
     }
   }, [firstAbility]);
 
+  // 두번째 줄 어빌리티
   React.useEffect(() => {
-    // 두번째 줄 어빌리티
     setSecondValue("");
     if (secondAbility.includes("재사용")) {
       const selectedCategory: keyof typeof FilteringOptions.numbers =
         "reset_Unique";
-      setSecondOption(FilteringOptions.numbers[selectedCategory]);
-    } else if (secondAbility.includes("버프")) {
-      const selectedCategory: keyof typeof FilteringOptions.numbers =
-        "buffMaintain_Unique";
       setSecondOption(FilteringOptions.numbers[selectedCategory]);
     } else if (secondAbility.includes("상태")) {
       const selectedCategory: keyof typeof FilteringOptions.numbers =
@@ -51,16 +106,12 @@ function InputPage() {
     }
   }, [secondAbility]);
 
+  // 세번째 줄 어빌리티
   React.useEffect(() => {
-    // 세번째 줄 어빌리티
     setThirdValue("");
     if (thirdAbility.includes("재사용")) {
       const selectedCategory: keyof typeof FilteringOptions.numbers =
         "reset_Unique";
-      setThirdOption(FilteringOptions.numbers[selectedCategory]);
-    } else if (thirdAbility.includes("버프")) {
-      const selectedCategory: keyof typeof FilteringOptions.numbers =
-        "buffMaintain_Unique";
       setThirdOption(FilteringOptions.numbers[selectedCategory]);
     } else if (thirdAbility.includes("상태")) {
       const selectedCategory: keyof typeof FilteringOptions.numbers =
@@ -81,133 +132,277 @@ function InputPage() {
     >
       <StyledContainer>
         <StyledDiv>
-          <StyledStatContainer>11</StyledStatContainer>
+          <StyledStatDetail style={{ width: "fit-content" }}>
+            <div>
+              <OtherContainerBox>
+                <OtherContainer>
+                  <StyledSmallTitle style={{ width: "13.44rem" }}>
+                    서버
+                  </StyledSmallTitle>
+                  <InputStat
+                    onChange={(e) => {
+                      setServer(e.target.value);
+                    }}
+                  />
+                </OtherContainer>
+              </OtherContainerBox>
+              <OtherContainerBox>
+                <OtherContainer>
+                  <StyledSmallTitle style={{ width: "13.44rem" }}>
+                    레벨
+                  </StyledSmallTitle>
+                  <InputStat
+                    onChange={(e) => {
+                      setLevel(parseInt(e.target.value));
+                    }}
+                  />
+                </OtherContainer>
+              </OtherContainerBox>
+              <OtherContainerBox>
+                <OtherContainer>
+                  <StyledSmallTitle style={{ width: "13.44rem" }}>
+                    직업
+                  </StyledSmallTitle>
+                  <InputStat
+                    onChange={(e) => {
+                      setMyClass(e.target.value);
+                    }}
+                  />
+                </OtherContainer>
+              </OtherContainerBox>
+              <OtherContainerBox>
+                <OtherContainer>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      margin: "1rem 1rem 1rem 3rem",
+                    }}
+                  >
+                    <img src="./mueot.jpg" alt="Mueot Image" />
+                    <img src="./nun.png" alt="Nun Image" />
+                  </div>
+                </OtherContainer>
+              </OtherContainerBox>
+              <OtherContainerBox>
+                <OtherContainer>
+                  <StyledSmallTitle style={{ width: "13.44rem" }}>
+                    HP
+                  </StyledSmallTitle>
+                  <InputStat
+                    onChange={(e) => {
+                      setHp(parseInt(e.target.value));
+                    }}
+                  />
+                </OtherContainer>
+              </OtherContainerBox>
+              <OtherContainerBox>
+                <OtherContainer>
+                  <StyledSmallTitle style={{ width: "13.44rem" }}>
+                    STR
+                  </StyledSmallTitle>
+                  <InputStat
+                    onChange={(e) => {
+                      setStr(parseInt(e.target.value));
+                    }}
+                  />
+                </OtherContainer>
+              </OtherContainerBox>
+              <OtherContainerBox>
+                <OtherContainer>
+                  <StyledSmallTitle style={{ width: "13.44rem" }}>
+                    DEX
+                  </StyledSmallTitle>
+                  <InputStat
+                    onChange={(e) => {
+                      setDex(parseInt(e.target.value));
+                    }}
+                  />
+                </OtherContainer>
+              </OtherContainerBox>
+              <OtherContainerBox>
+                <OtherContainer>
+                  <StyledSmallTitle style={{ width: "13.44rem" }}>
+                    INT
+                  </StyledSmallTitle>
+                  <InputStat
+                    onChange={(e) => {
+                      setInt(parseInt(e.target.value));
+                    }}
+                  />
+                </OtherContainer>
+              </OtherContainerBox>
+              <OtherContainerBox>
+                <OtherContainer>
+                  <StyledSmallTitle style={{ width: "13.44rem" }}>
+                    LUK
+                  </StyledSmallTitle>
+                  <InputStat
+                    onChange={(e) => {
+                      setLuk(parseInt(e.target.value));
+                    }}
+                  />
+                </OtherContainer>
+              </OtherContainerBox>
+              <OtherContainerBox>
+                <OtherContainer>
+                  <StyledSmallTitle style={{ width: "13.44rem" }}>
+                    메용X 주스텟
+                  </StyledSmallTitle>
+                  <InputStat
+                    onChange={(e) => {
+                      setNoYongsaStat(parseInt(e.target.value));
+                    }}
+                  />
+                </OtherContainer>
+              </OtherContainerBox>
+            </div>
+          </StyledStatDetail>
+          {/* 여기서부터 중앙 페이지 */}
           <StyledStatDetail>
             <div>
               <StyledDetailTitle>상세스탯</StyledDetailTitle>
-              <OtherContainerBox>
-                <OtherContainer>
-                  <StyledSamllTitle>메용 O 스텟</StyledSamllTitle>
-                  <InputSmallBox></InputSmallBox>
-                </OtherContainer>
-                <OtherContainer>
-                  <StyledSamllTitle>메용 X 스텟</StyledSamllTitle>
-                  <InputSmallBox></InputSmallBox>
-                </OtherContainer>
-              </OtherContainerBox>
-              <OtherContainerBox>
-                <OtherContainer>
-                  <StyledSamllTitle>부스텟 1</StyledSamllTitle>
-                  <InputSmallBox></InputSmallBox>
-                </OtherContainer>
-                <OtherContainer>
-                  <StyledSamllTitle>부스텟 2</StyledSamllTitle>
-                  <InputSmallBox></InputSmallBox>
-                </OtherContainer>
-              </OtherContainerBox>
               <InputStatContainer>
                 <StyledStatTitle>스탯 공격력</StyledStatTitle>
                 <StyledStatContainer>
-                  <InputStat></InputStat>
-                  <InputStat></InputStat>
+                  <InputStat
+                    onChange={(e) => {
+                      setHigherAtk(parseInt(e.target.value));
+                    }}
+                  />
+                  <InputStat
+                    onChange={(e) => {
+                      setLowerAtk(parseInt(e.target.value));
+                    }}
+                  />
                 </StyledStatContainer>
               </InputStatContainer>
               <OtherContainerBox>
                 <OtherContainer>
-                  <StyledSamllTitle>데미지</StyledSamllTitle>
-                  <InputSmallBox></InputSmallBox>
+                  <StyledSmallTitle>데미지</StyledSmallTitle>
+                  <InputSmallBox
+                    onChange={(e) => {
+                      setDmg(parseInt(e.target.value));
+                    }}
+                  />
                 </OtherContainer>
                 <OtherContainer>
-                  <StyledSamllTitle>보스 데미지</StyledSamllTitle>
-                  <InputSmallBox></InputSmallBox>
-                </OtherContainer>
-              </OtherContainerBox>
-              <OtherContainerBox>
-                <OtherContainer>
-                  <StyledSamllTitle>최종 데미지</StyledSamllTitle>
-                  <InputSmallBox></InputSmallBox>
-                </OtherContainer>
-                <OtherContainer>
-                  <StyledSamllTitle>버프 지속시간</StyledSamllTitle>
-                  <InputSmallBox></InputSmallBox>
+                  <StyledSmallTitle>보스 데미지</StyledSmallTitle>
+                  <InputSmallBox
+                    onChange={(e) => {
+                      setBossDmg(parseInt(e.target.value));
+                    }}
+                  />
                 </OtherContainer>
               </OtherContainerBox>
               <OtherContainerBox>
                 <OtherContainer>
-                  <StyledSamllTitle>방어율 무시</StyledSamllTitle>
+                  <StyledSmallTitle>최종 데미지</StyledSmallTitle>
                   <InputSmallBox></InputSmallBox>
                 </OtherContainer>
                 <OtherContainer>
-                  <StyledSamllTitle>아이템 드롭률</StyledSamllTitle>
-                  <InputSmallBox></InputSmallBox>
-                </OtherContainer>
-              </OtherContainerBox>
-              <OtherContainerBox>
-                <OtherContainer>
-                  <StyledSamllTitle>크리티컬확률</StyledSamllTitle>
-                  <InputSmallBox></InputSmallBox>
-                </OtherContainer>
-                <OtherContainer>
-                  <StyledSamllTitle>메소 획득량</StyledSamllTitle>
-                  <InputSmallBox></InputSmallBox>
+                  <StyledSmallTitle>버프 지속시간</StyledSmallTitle>
+                  <InputSmallBox
+                    onChange={(e) => {
+                      setBuffDuration(parseInt(e.target.value));
+                    }}
+                  />
                 </OtherContainer>
               </OtherContainerBox>
               <OtherContainerBox>
                 <OtherContainer>
-                  <StyledSamllTitle>크리 데미지</StyledSamllTitle>
-                  <InputSmallBox></InputSmallBox>
+                  <StyledSmallTitle>방어율 무시</StyledSmallTitle>
+                  <InputSmallBox
+                    onChange={(e) => {
+                      setIgnoreDef(parseInt(e.target.value));
+                    }}
+                  />
                 </OtherContainer>
                 <OtherContainer>
-                  <StyledSamllTitle>공격 속도</StyledSamllTitle>
-                  <InputSmallBox></InputSmallBox>
-                </OtherContainer>
-              </OtherContainerBox>
-              <OtherContainerBox>
-                <OtherContainer>
-                  <StyledSamllTitle>공격력</StyledSamllTitle>
-                  <InputSmallBox></InputSmallBox>
-                </OtherContainer>
-                <OtherContainer>
-                  <StyledSamllTitle>마력</StyledSamllTitle>
-                  <InputSmallBox></InputSmallBox>
+                  <StyledSmallTitle>크리 데미지</StyledSmallTitle>
+                  <InputSmallBox
+                    onChange={(e) => {
+                      setCriticalDmg(parseInt(e.target.value));
+                    }}
+                  />
                 </OtherContainer>
               </OtherContainerBox>
               <OtherContainerBox>
                 <OtherContainer>
-                  <StyledSamllTitle>공격력%</StyledSamllTitle>
-                  <InputSmallBox></InputSmallBox>
+                  <StyledSmallTitle>공격력</StyledSmallTitle>
+                  <InputSmallBox
+                    onChange={(e) => {
+                      setAtk(parseInt(e.target.value));
+                    }}
+                  />
                 </OtherContainer>
                 <OtherContainer>
-                  <StyledSamllTitle>마력%</StyledSamllTitle>
-                  <InputSmallBox></InputSmallBox>
+                  <StyledSmallTitle>마력</StyledSmallTitle>
+                  <InputSmallBox
+                    onChange={(e) => {
+                      setMagicAtk(parseInt(e.target.value));
+                    }}
+                  />
+                </OtherContainer>
+              </OtherContainerBox>
+              <OtherContainerBox>
+                <OtherContainer>
+                  <StyledSmallTitle>무기 공격력</StyledSmallTitle>
+                  <InputSmallBox
+                    onChange={(e) => {
+                      setWeaponAtk(parseInt(e.target.value));
+                    }}
+                  />
+                </OtherContainer>
+                <OtherContainer>
+                  <StyledSmallTitle>무기 마력</StyledSmallTitle>
+                  <InputSmallBox
+                    onChange={(e) => {
+                      setWeaponMagicAtk(parseInt(e.target.value));
+                    }}
+                  />
+                </OtherContainer>
+              </OtherContainerBox>
+              <OtherContainerBox>
+                <OtherContainer>
+                  <StyledSmallTitle>공격력%</StyledSmallTitle>
+                  <InputSmallBox
+                    onChange={(e) => {
+                      setAtkPercent(parseInt(e.target.value));
+                    }}
+                  />
+                </OtherContainer>
+                <OtherContainer>
+                  <StyledSmallTitle>마력%</StyledSmallTitle>
+                  <InputSmallBox
+                    onChange={(e) => {
+                      setMagicAtkPercent(parseInt(e.target.value));
+                    }}
+                  />
+                </OtherContainer>
+              </OtherContainerBox>
+              <OtherContainerBox>
+                <OtherContainer>
+                  <StyledSmallTitle>메르 유니온</StyledSmallTitle>
+                  <InputSmallBox
+                    onChange={(e) => {
+                      setMercedesUnion(parseInt(e.target.value));
+                    }}
+                  />
+                </OtherContainer>
+                <OtherContainer>
+                  <StyledSmallTitle>와헌 유니온</StyledSmallTitle>
+                  <InputSmallBox
+                    onChange={(e) => {
+                      setWildhunterUnion(parseInt(e.target.value));
+                    }}
+                  />
                 </OtherContainer>
               </OtherContainerBox>
               <StyledAbilityTitle>
                 <span>어빌리티</span>
-                {/* <button
-                  onClick={() => {
-                    setFirstAbility("");
-                    setFirstOption("");
-                    setSecondAbility("");
-                    setSecondOption("");
-                    setThirdAbility("");
-                    setThirdOption("");
-                  }}
-                  style={{ borderRadius: "1rem" }}
-                >
-                  초기화
-                </button> */}
               </StyledAbilityTitle>
-              <div>출력테스트</div>
-              <div>
-                {firstAbility} : {firstValue}
-              </div>
-              <div>
-                {secondAbility} : {secondValue}
-              </div>
-              <div>
-                {thirdAbility} : {thirdValue}
-              </div>
               <div style={{ margin: "1rem 0rem" }}>
                 <div style={{ display: "flex" }}>
                   <SelectCategory
@@ -222,9 +417,7 @@ function InputPage() {
                       setFirstAbility(selectedOption.label);
                     }}
                   />
-                  {(firstAbility.includes("재사용") ||
-                    firstAbility.includes("상태") ||
-                    firstAbility.includes("버프")) && (
+                  {firstAbility.includes("재사용") && (
                     <SelectValue
                       options={firstOption}
                       defaultValue={0}
@@ -249,8 +442,7 @@ function InputPage() {
                     }}
                   />
                   {(secondAbility.includes("재사용") ||
-                    secondAbility.includes("상태") ||
-                    secondAbility.includes("버프")) && (
+                    secondAbility.includes("상태")) && (
                     <SelectValue
                       options={secondOption}
                       styles={SelectStyles}
@@ -274,10 +466,10 @@ function InputPage() {
                     }}
                   />
                   {(thirdAbility.includes("재사용") ||
-                    thirdAbility.includes("상태") ||
-                    thirdAbility.includes("버프")) && (
+                    thirdAbility.includes("상태")) && (
                     <SelectValue
                       options={thirdOption}
+                      defaultValue={thirdOption[0]}
                       styles={SelectStyles}
                       onChange={(selectedOption: any) => {
                         setThirdValue(selectedOption.label);
@@ -288,6 +480,35 @@ function InputPage() {
               </div>
             </div>
           </StyledStatDetail>
+          {/* 여기서부터 우측 페이지 */}
+          <StyledStatDetail style={{ width: "fit-content" }}>
+            <div>
+              <StyledDetailTitle>도핑정보</StyledDetailTitle>
+              <OtherContainerBox>
+                <OtherContainer>
+                  <StyledSmallTitle style={{ width: "13.44rem" }}>
+                    도핑정보
+                  </StyledSmallTitle>
+                  <InputStat></InputStat>
+                </OtherContainer>
+              </OtherContainerBox>
+              <OtherContainerBox>
+                <OtherContainer>
+                  <StyledSmallTitle style={{ width: "13.44rem" }}>
+                    정리할것들
+                  </StyledSmallTitle>
+                  <InputStat value="도핑, 링크, 쿨감수치, 특수소울 등 정리"></InputStat>
+                </OtherContainer>
+              </OtherContainerBox>
+            </div>
+          </StyledStatDetail>
+          <button
+            onClick={() => {
+              submitData();
+            }}
+          >
+            Submit
+          </button>
         </StyledDiv>
         <ReturnLink to="/"> ◀️ 돌아가기</ReturnLink>
       </StyledContainer>
@@ -297,6 +518,7 @@ function InputPage() {
 
 export default InputPage;
 
+// 돌아가기 버튼
 const ReturnLink = styled(Link)`
   display: flex;
   align-items: center;
@@ -312,7 +534,7 @@ const StyledContainer = styled.div`
   margin-top: 3rem;
   justify-content: center;
   width: 100%;
-  font-size: 1.6rem;
+  font-size: 1.7rem;
 `;
 
 // 상세스텟 타이틀
@@ -347,6 +569,7 @@ const StyledStatDetail = styled.div`
   border: 1px solid gray;
   border-radius: 1rem;
   width: 50rem;
+  margin: 1rem 1rem;
 `;
 
 //-----스텟 공격력 부분을 꾸미는 컴포넌트-----//
@@ -400,7 +623,7 @@ const OtherContainer = styled.div`
   padding: 0.1rem 0.1rem;
 `;
 
-const StyledSamllTitle = styled.div`
+const StyledSmallTitle = styled.div`
   display: flex;
   background: linear-gradient(
     to bottom,
@@ -413,7 +636,7 @@ const StyledSamllTitle = styled.div`
   height: 3.5rem;
   width: 10rem;
   color: #fff;
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   text-shadow: -1px -1px 0 rgb(102, 102, 102), 1px -1px 0 rgb(102, 102, 102),
     -1px 1px 0 rgb(102, 102, 102), 1px 1px 0 rgb(102, 102, 102);
 `;
