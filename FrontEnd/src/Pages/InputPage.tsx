@@ -180,7 +180,6 @@ function InputPage() {
                       margin: "1rem 1rem 1rem 3rem",
                     }}
                   >
-                    <img src="./mueot.jpg" alt="Mueot Image" />
                     <img src="./nun.png" alt="Nun Image" />
                   </div>
                 </OtherContainer>
@@ -411,7 +410,7 @@ function InputPage() {
                         data.label !== secondAbility &&
                         data.label !== thirdAbility
                     )}
-                    defaultValue={FilteringOptions.options.first[0]}
+                    defaultValue={FilteringOptions.options.first[0]} // `value`를 사용하여 `firstAbility` 상태와 컴포넌트를 동기화합니다.
                     styles={SelectStyles}
                     onChange={(selectedOption: any) => {
                       setFirstAbility(selectedOption.label);
@@ -420,7 +419,9 @@ function InputPage() {
                   {firstAbility.includes("재사용") && (
                     <SelectValue
                       options={firstOption}
-                      defaultValue={0}
+                      value={firstOption.find(
+                        (options: any) => options.value === firstValue
+                      )}
                       styles={SelectStyles}
                       onChange={(selectedOption: any) => {
                         setFirstValue(selectedOption.label);
@@ -509,8 +510,19 @@ function InputPage() {
           >
             Submit
           </button>
+          <button
+            onClick={(e) => {
+              // setFirstValue(0);
+              window.location.reload();
+            }}
+          >
+            초기화
+          </button>
         </StyledDiv>
         <ReturnLink to="/"> ◀️ 돌아가기</ReturnLink>
+        <div>
+          {firstAbility} : {firstValue}
+        </div>
       </StyledContainer>
     </div>
   );
