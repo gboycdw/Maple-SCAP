@@ -1,7 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import DropDown from "../Common/DropDown";
-import FilteringOptions from "../../Pages/FilteringOptions";
 
 function DopingInput(props: any) {
   const {

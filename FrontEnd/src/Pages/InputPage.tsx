@@ -1,10 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import Select from "react-select";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import FilteringOptions from "./FilteringOptions";
-import DropDown from "../Components/Common/DropDown";
 import CommonInput from "../Components/InputPage/CommonInput";
 import DetailInput from "../Components/InputPage/DetailInput";
 import DopingInput from "../Components/InputPage/DopingInput";
@@ -345,20 +342,6 @@ const StyledContainer = styled.div`
   font-size: 1.7rem;
 `;
 
-// 상세스텟 타이틀
-const StyledDetailTitle = styled.div`
-  background: linear-gradient(to top, rgb(136, 187, 221), rgb(0, 102, 153));
-  color: white;
-  text-shadow: -1px -1px 0 rgb(34, 85, 136), 1px -1px 0 rgb(34, 85, 136),
-    -1px 1px 0 rgb(34, 85, 136), 1px 1px 0 rgb(34, 85, 136);
-  height: 4rem;
-  display: flex;
-  align-items: center;
-  border-radius: 1rem;
-  padding-left: 1rem;
-  margin-bottom: 0.8rem;
-`;
-
 const StyledDiv = styled.div`
   display: flex;
   align-items: center;
@@ -366,176 +349,6 @@ const StyledDiv = styled.div`
   padding: 1rem;
   border: 1px solid gray;
   border-radius: 1rem;
-  /* width: 200rem; */
-`;
-
-const StyledStatDetail = styled.div`
-  display: flex;
-  // align-items: center;
-  // justify-content: center;
-  padding: 1rem;
-  border: 1px solid gray;
-  border-radius: 1rem;
-  width: 360px;
-  margin: 1rem 1rem;
-`;
-
-//-----스텟 공격력 부분을 꾸미는 컴포넌트-----//
-const InputStatContainer = styled.div`
-  /* border: 1px solid #dddddd; */
-  border-radius: 1rem;
-  margin: 0.2rem 0.2rem;
-  padding: 0.1rem 0.1rem;
-`;
-
-const StyledStatTitle = styled.div`
-  display: flex;
-  background: linear-gradient(
-    to bottom,
-    rgb(187, 187, 187),
-    rgb(119, 119, 119)
-  );
-  border-radius: 1rem 0 0 1rem;
-  float: left;
-  justify-content: center;
-  align-items: center;
-  height: 7rem;
-  width: 10rem;
-  color: white;
-  text-shadow: -1px -1px 0 rgb(102, 102, 102), 1px -1px 0 rgb(102, 102, 102),
-    -1px 1px 0 rgb(102, 102, 102), 1px 1px 0 rgb(102, 102, 102);
-`;
-
-const StyledStatContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const InputStat = styled.input`
-  display: flex;
-  width: 100%;
-  text-align: center;
-  &::placeholder {
-    color: #bbb;
-    font-size: 11px;
-    /* font-style: italic; */
-  }
-`;
-
-//-----다른 스텟 부분을 꾸미는 컴포넌트-----//
-const OtherContainerBox = styled.div`
-  display: flex;
-  width: 100%;
-`;
-
-const OtherContainer = styled.div`
-  /* border: 1px solid #dddddd; */
-  align-items: center;
-  border-radius: 1rem;
-  display: flex;
-  width: 100%;
-  margin: 0.2rem 0.2rem;
-  padding: 0.1rem 0.1rem;
-`;
-
-const StyledSmallTitle = styled.div`
-  display: flex;
-  background: linear-gradient(
-    to bottom,
-    rgb(187, 187, 187),
-    rgb(119, 119, 119)
-  );
-  border-radius: 1rem 0 0 1rem;
-  justify-content: center;
-  align-items: center;
-  height: 3.5rem;
-  width: 10rem;
-  color: #fff;
-  font-size: 1.5rem;
-  text-shadow: -1px -1px 0 rgb(102, 102, 102), 1px -1px 0 rgb(102, 102, 102),
-    -1px 1px 0 rgb(102, 102, 102), 1px 1px 0 rgb(102, 102, 102);
-`;
-
-const InputSmallBox = styled.input`
-  display: flex;
-  justify-content: center;
-  width: 57%;
-  text-align: center;
-  &::placeholder {
-    color: #bbb;
-    font-size: 11px;
-    /* font-style: italic; */
-  }
-`;
-
-// 어빌리티 타이틀
-const StyledAbilityTitle = styled.div`
-  background: linear-gradient(to top, rgb(204, 221, 136), rgb(136, 187, 34));
-  color: white;
-  text-shadow: -1px -1px 0 rgb(85, 136, 17), 1px -1px 0 rgb(85, 136, 17),
-    -1px 1px 0 rgb(85, 136, 17), 1px 1px 0 rgb(85, 136, 17);
-  height: 4rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-radius: 1rem;
-  padding-left: 1rem;
-  margin-top: 0.8rem;
-  padding-right: 1rem;
-`;
-
-// 버프 사용 버튼
-const StyledBuffButton = styled.button`
-  background-color: #fff;
-  margin: 1.8px;
-  width: 40px;
-  height: 40px;
-  border-radius: 14px;
-`;
-
-const InputDopingBox = styled.input`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 12%;
-  height: 30px;
-  text-align: center;
-  font-size: 11px;
-  padding-left: 4px;
-  /* &::placeholder {
-    color: #bbb;
-    font-size: 11px;
-    font-style: italic;
-  } */
-`;
-
-// 도핑 선택 타이틀
-const StyledDopingTitle = styled.div`
-  background: linear-gradient(to top, rgb(222, 223, 163), rgb(219, 188, 10));
-  color: white;
-  text-shadow: -1px -1px 0 rgb(228, 211, 59), 1px -1px 0 rgb(228, 211, 59),
-    -1px 1px 0 rgb(228, 211, 59), 1px 1px 0 rgb(228, 211, 59);
-  height: 4rem;
-  display: flex;
-  align-items: center;
-  border-radius: 1rem;
-  padding-left: 1rem;
-  margin-bottom: 0.8rem;
-`;
-
-const DopingSelectButton = styled.button`
-  border: 1px solid black;
-  border-radius: 20px;
-  margin: 10px;
-`;
-
-const NonSelectedImg = styled.img`
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
-`;
-
-const SelectedImg = styled.img`
-  /* border: 1px solid red; */
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0.4);
 `;
 
 const EndButton = styled.button`

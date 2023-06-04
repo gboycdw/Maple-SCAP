@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import FilteringOptions from "../../Pages/FilteringOptions";
 import Ability from "./AbilityInput";
-import DropDown from "../Common/DropDown";
 
 function DetailInput(props: any) {
   const {
