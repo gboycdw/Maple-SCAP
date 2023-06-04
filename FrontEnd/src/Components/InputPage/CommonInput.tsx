@@ -285,7 +285,7 @@ function CommonInput(props: any) {
                 type="number"
                 min={1}
                 placeholder="힘 수치"
-                title="메용 포함 수치"
+                title="메용 포함 수치, 선택한 컴뱃 적용 유무와 일치하는 지 확인할 것"
                 onChange={(e) => {
                   setStr(parseInt(e.target.value));
                 }}
@@ -301,7 +301,7 @@ function CommonInput(props: any) {
                 type="number"
                 min={1}
                 placeholder="민첩 수치"
-                title="메용 포함 수치"
+                title="메용 포함 수치, 선택한 컴뱃 적용 유무와 일치하는 지 확인할 것"
                 onChange={(e) => {
                   setDex(parseInt(e.target.value));
                 }}
@@ -317,7 +317,7 @@ function CommonInput(props: any) {
                 type="number"
                 min={1}
                 placeholder="지능 수치"
-                title="메용 포함 수치"
+                title="메용 포함 수치, 선택한 컴뱃 적용 유무와 일치하는 지 확인할 것"
                 onChange={(e) => {
                   setInt(parseInt(e.target.value));
                 }}
@@ -333,7 +333,7 @@ function CommonInput(props: any) {
                 type="number"
                 min={1}
                 placeholder="행운 수치"
-                title="메용 포함 수치"
+                title="메용 포함 수치, 선택한 컴뱃 적용 유무와 일치하는 지 확인할 것"
                 onChange={(e) => {
                   setLuk(parseInt(e.target.value));
                 }}
@@ -349,7 +349,7 @@ function CommonInput(props: any) {
                 type="number"
                 min={1}
                 placeholder="메이플 용사를 끈 상태의 주스텟"
-                title="선택한 컴뱃 적용 유무와 일치하는 지 확인할 것"
+                title="메용 off 주스텟, 선택한 컴뱃 적용 유무와 일치하는 지 확인할 것"
                 onChange={(e) => {
                   setNoYongsaStat(parseInt(e.target.value));
                 }}
@@ -365,7 +365,7 @@ function CommonInput(props: any) {
                 type="number"
                 min={0}
                 placeholder="아케인심볼 + 어센틱심볼로 증가한 주스텟"
-                title="선택한 컴뱃 적용 유무와 일치하는 지 확인할 것"
+                title="스텟 증가량만 합산하여 입력"
                 onChange={(e) => {
                   setSimbolStat(parseInt(e.target.value));
                 }}
@@ -381,7 +381,7 @@ function CommonInput(props: any) {
                 type="number"
                 min={1}
                 placeholder="어빌리티로 증가한 주스텟"
-                title="선택한 컴뱃 적용 유무와 일치하는 지 확인할 것"
+                title="어빌리티로 오른 주스텟을 입력"
                 onChange={(e) => {
                   setAbilityStat(parseInt(e.target.value));
                 }}
@@ -397,7 +397,7 @@ function CommonInput(props: any) {
                 type="number"
                 min={1}
                 placeholder="유니온 공격대 배치로 증가한 주스텟"
-                title="선택한 컴뱃 적용 유무와 일치하는 지 확인할 것"
+                title="유니온 배치로 증가한 주스텟 수치를 더해서 입력"
                 onChange={(e) => {
                   setUnionStat(parseInt(e.target.value));
                 }}
@@ -413,7 +413,7 @@ function CommonInput(props: any) {
                 type="number"
                 min={1}
                 placeholder="하이퍼스탯으로 증가한 주스텟"
-                title="선택한 컴뱃 적용 유무와 일치하는 지 확인할 것"
+                title="하이퍼스텟을 찍어서 '증가한' 주스텟 입력"
                 onChange={(e) => {
                   setHyperStat(parseInt(e.target.value));
                 }}
