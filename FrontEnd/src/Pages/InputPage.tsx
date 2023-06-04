@@ -18,8 +18,16 @@ function InputPage() {
   const [thirdOption, setThirdOption] = React.useState<any>([]);
   const [thirdValue, setThirdValue] = React.useState<string>("");
 
+  // 특수 정보 관리
+  const [reboot, setReboot] = React.useState(false);
+  const [genesis, setGenesis] = React.useState(false);
+  const [combat, setCombat] = React.useState(true);
+  const [mugongSoul, setMugongSoul] = React.useState(0);
+  const [useRuinForceShild, setUseRuinForceShild] = React.useState(false);
+  const [epiSoul, setEpiSoul] = React.useState(0);
+  const [oneHandSword, setOneHandSword] = React.useState(false);
+
   // 스텟 입력 관리
-  const [server, setServer] = React.useState("");
   const [level, setLevel] = React.useState(0);
   const [myClass, setMyClass] = React.useState("");
   const [hp, setHp] = React.useState(0);
@@ -28,6 +36,12 @@ function InputPage() {
   const [int, setInt] = React.useState(0);
   const [luk, setLuk] = React.useState(0);
   const [noYongsaStat, setNoYongsaStat] = React.useState(0);
+  const [simbolStat, setSimbolStat] = React.useState(0);
+  const [abilityStat, setAbilityStat] = React.useState(0);
+  const [unionStat, setUnionStat] = React.useState(0);
+  const [hyperStat, setHyperStat] = React.useState(0);
+
+  // 상세스텟 입력 관리
   const [higherAtk, setHigherAtk] = React.useState(0);
   const [lowerAtk, setLowerAtk] = React.useState(0);
   const [dmg, setDmg] = React.useState(0);
@@ -35,14 +49,22 @@ function InputPage() {
   const [buffDuration, setBuffDuration] = React.useState(0);
   const [ignoreDef, setIgnoreDef] = React.useState(0);
   const [criticalDmg, setCriticalDmg] = React.useState(0);
-  const [atk, setAtk] = React.useState(0);
-  const [magicAtk, setMagicAtk] = React.useState(0);
+  const [critical, setCritical] = React.useState(0);
+  // const [magicAtk, setMagicAtk] = React.useState(0);
   const [weaponAtk, setWeaponAtk] = React.useState(0);
-  const [weaponMagicAtk, setWeaponMagicAtk] = React.useState(0);
+  // const [weaponMagicAtk, setWeaponMagicAtk] = React.useState(0);
   const [atkPercent, setAtkPercent] = React.useState(0);
-  const [maginAtkPercent, setMagicAtkPercent] = React.useState(0);
+  // const [maginAtkPercent, setMagicAtkPercent] = React.useState(0);
   const [mercedesUnion, setMercedesUnion] = React.useState(0);
   const [wildhunterUnion, setWildhunterUnion] = React.useState(0);
+
+  // 링크 스킬 관리
+  const [magicianLink, setMagicianLink] = React.useState(0);
+  const [thiefLink, setThiefLink] = React.useState(0);
+  const [kadenaLink, setKadenaLink] = React.useState(0);
+  const [illiumLink, setIlliumLink] = React.useState(0);
+  const [arkLink, setArkLink] = React.useState(0);
+  const [kainLink, setKainLink] = React.useState(0);
 
   // 도핑 관리
   const [noblessBoss, setNoblessBoss] = React.useState(false);
@@ -70,33 +92,78 @@ function InputPage() {
   // 데이터를 제출하기 위해 정리하는 함수
   function submitData() {
     const data = {
-      server: server,
-      level: level,
-      myClass: myClass,
-      hp: hp,
-      str: str,
-      dex: dex,
-      int: int,
-      luk: luk,
-      noYongsaStat: noYongsaStat,
-      higherAtk: higherAtk,
-      lowerAtk: lowerAtk,
-      dmg: dmg,
-      bossDmg: bossDmg,
-      buffDuration: buffDuration,
-      ignoreDef: ignoreDef,
-      criticalDmg: criticalDmg,
-      atk: atk,
-      magicAtk: magicAtk,
-      weaponAtk: weaponAtk,
-      weaponMagicAtk: weaponMagicAtk,
-      atkPercent: atkPercent,
-      maginAtkPercent: maginAtkPercent,
-      mercedesUnion: mercedesUnion,
-      wildhunterUnion: wildhunterUnion,
-      firstAbility: [firstAbility, firstValue],
-      secondAbility: [secondAbility, secondValue],
-      thirdAbility: [thirdAbility, thirdValue],
+      // 특수 옵션
+      special: {
+        reboot: reboot,
+        genesis: genesis,
+        combat: combat,
+        mugongSoul: mugongSoul,
+        useRuinForceShild: useRuinForceShild,
+        epiSoul: epiSoul,
+        oneHandSword: oneHandSword,
+      },
+      stat: {
+        // 기본 스텟
+        level: level,
+        myClass: myClass,
+        hp: hp,
+        str: str,
+        dex: dex,
+        int: int,
+        luk: luk,
+        noYongsaStat: noYongsaStat,
+        simbolStat: simbolStat,
+        abilityStat: abilityStat,
+        unionStat: unionStat,
+        hyperStat: hyperStat,
+        // 세부 스텟
+        higherAtk: higherAtk,
+        lowerAtk: lowerAtk,
+        dmg: dmg,
+        bossDmg: bossDmg,
+        buffDuration: buffDuration,
+        ignoreDef: ignoreDef,
+        criticalDmg: criticalDmg,
+        critical: critical,
+        weaponAtk: weaponAtk,
+        atkPercent: atkPercent,
+        mercedesUnion: mercedesUnion,
+        wildhunterUnion: wildhunterUnion,
+        // 어빌리티
+        firstAbility: [firstAbility, firstValue],
+        secondAbility: [secondAbility, secondValue],
+        thirdAbility: [thirdAbility, thirdValue],
+      },
+      // 링크 스킬
+      linkSkill: {
+        magicianLink: magicianLink,
+        thiefLink: thiefLink,
+        kadenaLink: kadenaLink,
+        illiumLink: illiumLink,
+        arkLink: arkLink,
+        kainLink: kainLink,
+      },
+      // 도핑
+      doping: {
+        nobless: [
+          noblessBoss ? noblessBossValue : 0,
+          noblessDmg ? noblessDmgValue : 0,
+          noblessCriDmg ? noblessCriDmgValue : 0,
+          noblessIgnore ? noblessIgnoreValue : 0,
+        ],
+        herosHawl: herosHawl,
+        dopingShiningRed: dopingShiningRed,
+        dopingBigHero: dopingBigHero,
+        dopingLegendHero: dopingLegendHero,
+        dopingJangBi: dopingJangBi,
+        dopingSuperPower: dopingSuperPower,
+        dopingExtreme: dopingExtreme,
+        dopingGuildBlessing: dopingGuildBlessing,
+        dopingUnionsPower: dopingUnionsPower,
+        dopingUrus: dopingUrus,
+        dopingFish: dopingFish,
+        dopingStatPotion: dopingStatPotion ? dopingStatPotionValue : 0,
+      },
     };
     console.log(data);
     return data;
@@ -149,18 +216,196 @@ function InputPage() {
           <StyledStatDetail style={{ width: "fit-content" }}>
             <div>
               <OtherContainerBox>
-                <OtherContainer>
-                  <StyledSmallTitle style={{ width: "13.44rem" }}>
-                    서버
-                  </StyledSmallTitle>
-                  <InputStat
-                    type="string"
-                    placeholder="본섭or리부트"
-                    title="정확하게 입력 안 하면 반영 안 됩니다."
-                    onChange={(e) => {
-                      setServer(e.target.value);
-                    }}
-                  />
+                <OtherContainer
+                  style={{ display: "flex", justifyContent: "space-around" }}
+                >
+                  <div>
+                    <StyledBuffButton
+                      onClick={() => {
+                        setReboot(!reboot);
+                      }}
+                    >
+                      {!reboot ? (
+                        <SelectedImg
+                          src="./images/server_mainserver.png"
+                          alt="본섭"
+                          title="본섭"
+                        />
+                      ) : (
+                        <SelectedImg
+                          src="./images/server_reboot.png"
+                          alt="리부트"
+                          title="리부트"
+                        />
+                      )}
+                    </StyledBuffButton>
+                    <StyledBuffButton
+                      onClick={() => {
+                        setGenesis(!genesis);
+                      }}
+                    >
+                      {!genesis ? (
+                        <SelectedImg
+                          src="./images/item_genesis_no.png"
+                          alt="노해방"
+                          title="노해방"
+                        />
+                      ) : (
+                        <SelectedImg
+                          src="./images/item_genesis.png"
+                          alt="해방"
+                          title="해방"
+                        />
+                      )}
+                    </StyledBuffButton>
+                    <StyledBuffButton
+                      onClick={() => {
+                        setCombat(!combat);
+                      }}
+                    >
+                      {combat ? (
+                        <SelectedImg
+                          src="./images/skill_combat.png"
+                          alt="컴뱃O"
+                          title="컴뱃O"
+                        />
+                      ) : (
+                        <SelectedImg
+                          src="./images/skill_combat_no.png"
+                          alt="컴뱃X"
+                          title="컴뱃X"
+                        />
+                      )}
+                    </StyledBuffButton>
+                    <StyledBuffButton
+                      onClick={() => {
+                        if (mugongSoul <= 1) {
+                          setMugongSoul(mugongSoul + 1);
+                        } else if (mugongSoul === 2) {
+                          setMugongSoul(0);
+                        }
+                      }}
+                    >
+                      {mugongSoul === 0 ? (
+                        <SelectedImg
+                          src="./images/soul_mugong_no.png"
+                          alt="무공소울X"
+                          title="무공소울X"
+                        />
+                      ) : mugongSoul === 1 ? (
+                        <SelectedImg
+                          src="./images/soul_mugong.png"
+                          alt="무공1렙"
+                          title="무공소울 1레벨 사용"
+                        />
+                      ) : (
+                        <SelectedImg
+                          src="./images/soul_mugong2.png"
+                          alt="무공2렙"
+                          title="무공소울 2레벨 사용"
+                        />
+                      )}
+                    </StyledBuffButton>
+                  </div>
+                  <div>
+                    {myClass === "데몬슬레이어" || myClass === "데몬어벤져" ? (
+                      <StyledBuffButton
+                        onClick={() => {
+                          setUseRuinForceShild(!useRuinForceShild);
+                        }}
+                      >
+                        {!useRuinForceShild ? (
+                          <SelectedImg
+                            src="./images/item_ruin_no.png"
+                            alt="루포실X"
+                            title="루포실X"
+                          />
+                        ) : (
+                          <SelectedImg
+                            src="./images/item_ruin.png"
+                            alt="루포실 사용"
+                            title="루포실 사용"
+                          />
+                        )}
+                      </StyledBuffButton>
+                    ) : (
+                      <StyledBuffButton>
+                        <SelectedImg
+                          src="./images/blank.png"
+                          alt="미사용"
+                          title="미사용"
+                        />
+                      </StyledBuffButton>
+                    )}
+                    {myClass === "데몬어벤져" ? (
+                      <StyledBuffButton
+                        onClick={() => {
+                          if (epiSoul <= 1) {
+                            setEpiSoul(epiSoul + 1);
+                          } else if (epiSoul === 2) {
+                            setEpiSoul(0);
+                          }
+                        }}
+                      >
+                        {epiSoul === 0 ? (
+                          <SelectedImg
+                            src="./images/soul_epi_no.png"
+                            alt="에피X"
+                            title="에피네아 소울 미사용"
+                          />
+                        ) : epiSoul === 1 ? (
+                          <SelectedImg
+                            src="./images/soul_epi.png"
+                            alt="에피1렙"
+                            title="에피소울 1레벨 사용"
+                          />
+                        ) : (
+                          <SelectedImg
+                            src="./images/soul_epi2.png"
+                            alt="에피2렙"
+                            title="에피소울 2레벨 사용"
+                          />
+                        )}
+                      </StyledBuffButton>
+                    ) : (
+                      <StyledBuffButton>
+                        <SelectedImg
+                          src="./images/blank.png"
+                          alt="미사용"
+                          title="미사용"
+                        />
+                      </StyledBuffButton>
+                    )}
+                    {myClass === "히어로" || myClass === "팔라딘" ? (
+                      <StyledBuffButton
+                        onClick={() => {
+                          setOneHandSword(!oneHandSword);
+                        }}
+                      >
+                        {!oneHandSword ? (
+                          <SelectedImg
+                            src="./images/sword_twohand.png"
+                            alt="두손검 사용"
+                            title="두손검 사용"
+                          />
+                        ) : (
+                          <SelectedImg
+                            src="./images/sword_onehand.png"
+                            alt="한손검 사용"
+                            title="한손검 사용"
+                          />
+                        )}
+                      </StyledBuffButton>
+                    ) : (
+                      <StyledBuffButton>
+                        <SelectedImg
+                          src="./images/blank.png"
+                          alt="미사용"
+                          title="미사용"
+                        />
+                      </StyledBuffButton>
+                    )}
+                  </div>
                 </OtherContainer>
               </OtherContainerBox>
               <OtherContainerBox>
@@ -171,7 +416,7 @@ function InputPage() {
                   <InputStat
                     type="number"
                     min={1}
-                    placeholder="레벨을 입력하세요"
+                    placeholder="레벨"
                     title="현재 레벨"
                     onChange={(e) => {
                       setLevel(parseInt(e.target.value));
@@ -186,7 +431,7 @@ function InputPage() {
                   </StyledSmallTitle>
                   <InputStat
                     type="string"
-                    placeholder="직업을 입력하세요"
+                    placeholder="직업"
                     title="정확하게 입력 안 하면 인식 못함."
                     onChange={(e) => {
                       setMyClass(e.target.value);
@@ -194,7 +439,7 @@ function InputPage() {
                   />
                 </OtherContainer>
               </OtherContainerBox>
-              <OtherContainerBox>
+              {/* <OtherContainerBox>
                 <OtherContainer>
                   <div
                     style={{
@@ -207,7 +452,7 @@ function InputPage() {
                     <img src="./images/nun.png" alt="Nun Image" />
                   </div>
                 </OtherContainer>
-              </OtherContainerBox>
+              </OtherContainerBox> */}
               <OtherContainerBox>
                 <OtherContainer>
                   <StyledSmallTitle style={{ width: "13.44rem" }}>
@@ -216,7 +461,7 @@ function InputPage() {
                   <InputStat
                     type="number"
                     min={1}
-                    placeholder="총 HP 수치를 입력하세요"
+                    placeholder="총 HP 수치"
                     title="데몬어벤져는 반드시 총 HP를 입력할 것"
                     onChange={(e) => {
                       setHp(parseInt(e.target.value));
@@ -232,7 +477,7 @@ function InputPage() {
                   <InputStat
                     type="number"
                     min={1}
-                    placeholder="힘 수치를 입력하세요"
+                    placeholder="힘 수치"
                     title="메용 포함 수치"
                     onChange={(e) => {
                       setStr(parseInt(e.target.value));
@@ -248,7 +493,7 @@ function InputPage() {
                   <InputStat
                     type="number"
                     min={1}
-                    placeholder="민첩 수치를 입력하세요"
+                    placeholder="민첩 수치"
                     title="메용 포함 수치"
                     onChange={(e) => {
                       setDex(parseInt(e.target.value));
@@ -264,7 +509,7 @@ function InputPage() {
                   <InputStat
                     type="number"
                     min={1}
-                    placeholder="지능 수치를 입력하세요"
+                    placeholder="지능 수치"
                     title="메용 포함 수치"
                     onChange={(e) => {
                       setInt(parseInt(e.target.value));
@@ -280,7 +525,7 @@ function InputPage() {
                   <InputStat
                     type="number"
                     min={1}
-                    placeholder="행운 수치를 입력하세요"
+                    placeholder="행운 수치"
                     title="메용 포함 수치"
                     onChange={(e) => {
                       setLuk(parseInt(e.target.value));
@@ -296,10 +541,74 @@ function InputPage() {
                   <InputStat
                     type="number"
                     min={1}
-                    placeholder="메이플 용사를 끈 주스텟을 입력하세요"
+                    placeholder="메이플 용사를 끈 상태의 주스텟"
                     title="선택한 컴뱃 적용 유무와 일치하는 지 확인할 것"
                     onChange={(e) => {
                       setNoYongsaStat(parseInt(e.target.value));
+                    }}
+                  />
+                </OtherContainer>
+              </OtherContainerBox>
+              <OtherContainerBox>
+                <OtherContainer>
+                  <StyledSmallTitle style={{ width: "13.44rem" }}>
+                    심볼 스텟 수치
+                  </StyledSmallTitle>
+                  <InputStat
+                    type="number"
+                    min={0}
+                    placeholder="아케인심볼 + 어센틱심볼로 증가한 주스텟"
+                    title="선택한 컴뱃 적용 유무와 일치하는 지 확인할 것"
+                    onChange={(e) => {
+                      setSimbolStat(parseInt(e.target.value));
+                    }}
+                  />
+                </OtherContainer>
+              </OtherContainerBox>
+              <OtherContainerBox>
+                <OtherContainer>
+                  <StyledSmallTitle style={{ width: "13.44rem" }}>
+                    어빌리티 스텟
+                  </StyledSmallTitle>
+                  <InputStat
+                    type="number"
+                    min={1}
+                    placeholder="어빌리티로 증가한 주스텟"
+                    title="선택한 컴뱃 적용 유무와 일치하는 지 확인할 것"
+                    onChange={(e) => {
+                      setAbilityStat(parseInt(e.target.value));
+                    }}
+                  />
+                </OtherContainer>
+              </OtherContainerBox>
+              <OtherContainerBox>
+                <OtherContainer>
+                  <StyledSmallTitle style={{ width: "13.44rem" }}>
+                    유니온 스텟
+                  </StyledSmallTitle>
+                  <InputStat
+                    type="number"
+                    min={1}
+                    placeholder="유니온 공격대 배치로 증가한 주스텟"
+                    title="선택한 컴뱃 적용 유무와 일치하는 지 확인할 것"
+                    onChange={(e) => {
+                      setUnionStat(parseInt(e.target.value));
+                    }}
+                  />
+                </OtherContainer>
+              </OtherContainerBox>
+              <OtherContainerBox>
+                <OtherContainer>
+                  <StyledSmallTitle style={{ width: "13.44rem" }}>
+                    하이퍼스텟
+                  </StyledSmallTitle>
+                  <InputStat
+                    type="number"
+                    min={1}
+                    placeholder="하이퍼스탯으로 증가한 주스텟"
+                    title="선택한 컴뱃 적용 유무와 일치하는 지 확인할 것"
+                    onChange={(e) => {
+                      setHyperStat(parseInt(e.target.value));
                     }}
                   />
                 </OtherContainer>
@@ -315,14 +624,14 @@ function InputPage() {
                 <StyledStatContainer>
                   <InputStat
                     type="number"
-                    placeholder="앞스공(낮은 숫자)을 입력하세요"
+                    placeholder="앞스공(낮은 숫자)"
                     onChange={(e) => {
                       setHigherAtk(parseInt(e.target.value));
                     }}
                   />
                   <InputStat
                     type="number"
-                    placeholder="뒷스공(큰 숫자)을 입력하세요"
+                    placeholder="뒷스공(큰 숫자)"
                     onChange={(e) => {
                       setLowerAtk(parseInt(e.target.value));
                     }}
@@ -413,81 +722,148 @@ function InputPage() {
               </OtherContainerBox>
               <OtherContainerBox>
                 <OtherContainer>
-                  <StyledSmallTitle>공격력</StyledSmallTitle>
+                  <StyledSmallTitle>크리티컬 확률</StyledSmallTitle>
                   <InputSmallBox
                     type="number"
                     min={0}
-                    placeholder="스텟창 총 공격력"
-                    title="스텟창에 표기되는 총 공격력 수치"
+                    max={100}
+                    placeholder="쓸샾포함 크확"
+                    title="크리티컬 확률(궁수는 반드시 제출)"
                     onChange={(e) => {
-                      setAtk(parseInt(e.target.value));
+                      setCritical(parseInt(e.target.value));
                     }}
                   />
                 </OtherContainer>
                 <OtherContainer>
-                  <StyledSmallTitle>마력</StyledSmallTitle>
+                  <StyledSmallTitle>무기 공/마</StyledSmallTitle>
                   <InputSmallBox
                     type="number"
                     min={0}
-                    placeholder="스텟창 총 마력"
-                    title="스텟창에 표기되는 총 마력 수치"
-                    onChange={(e) => {
-                      setMagicAtk(parseInt(e.target.value));
-                    }}
-                  />
-                </OtherContainer>
-              </OtherContainerBox>
-              <OtherContainerBox>
-                <OtherContainer>
-                  <StyledSmallTitle>무기 공격력</StyledSmallTitle>
-                  <InputSmallBox
-                    type="number"
-                    min={0}
-                    placeholder="무기 공격력"
-                    title="장착한 무기의 총 공격력 수치"
+                    placeholder="무기 총 공격력"
+                    title="장착한 무기의 총 공격력 or 마력 수치"
                     onChange={(e) => {
                       setWeaponAtk(parseInt(e.target.value));
                     }}
                   />
                 </OtherContainer>
-                <OtherContainer>
-                  <StyledSmallTitle>무기 마력</StyledSmallTitle>
-                  <InputSmallBox
-                    type="number"
-                    min={0}
-                    placeholder="무기 마력"
-                    title="장착한 무기의 총 마력 수치"
-                    onChange={(e) => {
-                      setWeaponMagicAtk(parseInt(e.target.value));
-                    }}
-                  />
-                </OtherContainer>
               </OtherContainerBox>
               <OtherContainerBox>
-                <OtherContainer>
-                  <StyledSmallTitle>공격력%</StyledSmallTitle>
+                <OtherContainer style={{ width: "50%" }}>
+                  <StyledSmallTitle>공/마%</StyledSmallTitle>
                   <InputSmallBox
                     type="number"
                     min={0}
-                    placeholder="장비 공격력%"
-                    title="장비 공격력% 합계, 소울웨폰 수치도 반드시 합산"
+                    placeholder="총 공격력%"
+                    title="장비 공격력% or 마력% 합계, 소울웨폰 수치도 반드시 합산"
                     onChange={(e) => {
                       setAtkPercent(parseInt(e.target.value));
                     }}
                   />
                 </OtherContainer>
-                <OtherContainer>
-                  <StyledSmallTitle>마력%</StyledSmallTitle>
-                  <InputSmallBox
-                    type="number"
-                    min={0}
-                    placeholder="장비 마력%"
-                    title="장비 마력% 합계, 소울웨폰 수치도 반드시 합산"
-                    onChange={(e) => {
-                      setMagicAtkPercent(parseInt(e.target.value));
-                    }}
-                  />
-                </OtherContainer>
+                <div style={{ display: "inline-flex", width: "50%" }}>
+                  <OtherContainer>
+                    <StyledSmallTitle style={{ width: "29px" }}>
+                      모법
+                    </StyledSmallTitle>
+                    <InputSmallBox
+                      style={{ width: "50px" }}
+                      type="number"
+                      min={0}
+                      max={6}
+                      placeholder="링크Lv"
+                      title="모험가 법사 링크"
+                      onChange={(e) => {
+                        setMagicianLink(parseInt(e.target.value));
+                      }}
+                    />
+                  </OtherContainer>
+                  <OtherContainer>
+                    <StyledSmallTitle style={{ width: "29px" }}>
+                      모도
+                    </StyledSmallTitle>
+                    <InputSmallBox
+                      style={{ width: "50px" }}
+                      type="number"
+                      min={0}
+                      max={6}
+                      placeholder="링크Lv"
+                      title="모험가 법사 링크"
+                      onChange={(e) => {
+                        setThiefLink(parseInt(e.target.value));
+                      }}
+                    />
+                  </OtherContainer>
+                </div>
+              </OtherContainerBox>
+              <OtherContainerBox>
+                <div style={{ display: "inline-flex", width: "51%" }}>
+                  <OtherContainer>
+                    <StyledSmallTitle style={{ width: "29px" }}>
+                      카데나
+                    </StyledSmallTitle>
+                    <InputSmallBox
+                      style={{ width: "50px" }}
+                      type="number"
+                      min={0}
+                      max={2}
+                      placeholder="링크Lv"
+                      title="카데나 링크"
+                      onChange={(e) => {
+                        setKadenaLink(parseInt(e.target.value));
+                      }}
+                    />
+                  </OtherContainer>
+                  <OtherContainer>
+                    <StyledSmallTitle style={{ width: "29px" }}>
+                      일리움
+                    </StyledSmallTitle>
+                    <InputSmallBox
+                      style={{ width: "50px" }}
+                      type="number"
+                      min={0}
+                      max={6}
+                      placeholder="링크Lv"
+                      title="일리움 링크"
+                      onChange={(e) => {
+                        setIlliumLink(parseInt(e.target.value));
+                      }}
+                    />
+                  </OtherContainer>
+                </div>
+                <div style={{ display: "inline-flex", width: "50%" }}>
+                  <OtherContainer>
+                    <StyledSmallTitle style={{ width: "29px" }}>
+                      아크
+                    </StyledSmallTitle>
+                    <InputSmallBox
+                      style={{ width: "50px" }}
+                      type="number"
+                      min={0}
+                      max={6}
+                      placeholder="링크Lv"
+                      title="아크 링크"
+                      onChange={(e) => {
+                        setArkLink(parseInt(e.target.value));
+                      }}
+                    />
+                  </OtherContainer>
+                  <OtherContainer>
+                    <StyledSmallTitle style={{ width: "29px" }}>
+                      카인
+                    </StyledSmallTitle>
+                    <InputSmallBox
+                      style={{ width: "50px" }}
+                      type="number"
+                      min={0}
+                      max={6}
+                      placeholder="링크Lv"
+                      title="카인 링크"
+                      onChange={(e) => {
+                        setKainLink(parseInt(e.target.value));
+                      }}
+                    />
+                  </OtherContainer>
+                </div>
               </OtherContainerBox>
               <OtherContainerBox>
                 <OtherContainer>
@@ -1187,6 +1563,15 @@ const StyledAbilityTitle = styled.div`
 
 // 버프 사용 버튼
 const StyledBuffButton = styled.button`
+  background-color: #fff;
+  margin: 1.8px;
+  width: 40px;
+  height: 40px;
+  border-radius: 14px;
+`;
+
+// 버프 사용 버튼
+const StyledBlankButton = styled.div`
   background-color: #fff;
   margin: 1.8px;
   width: 40px;
