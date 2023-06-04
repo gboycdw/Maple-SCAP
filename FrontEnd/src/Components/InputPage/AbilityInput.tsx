@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import DropDown from "../Common/DropDown";
-import FilteringOptions from "../../Pages/FilteringOptions";
+import FilteringOptions from "../Common/FilteringOptions";
 
 function Ability(props: any) {
   const {
