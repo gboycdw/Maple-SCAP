@@ -43,7 +43,7 @@ function DropDown(props: Props) {
   // 받아온 드롭다운 배열을 객체로 변환하는 부분
   const list = props.list.reduce(
     (acc: Record<string, string>, val: string, index: number) => {
-      acc[index] = val;
+      acc[index.toString()] = val;
       return acc;
     },
     {}
@@ -55,13 +55,14 @@ function DropDown(props: Props) {
         onClick={() => {
           setClick(!click);
         }}
+        defaultValue={0}
       >
         <div style={{ overflow: "hidden", flex: 3 }}>
           {selected.length > 0 ? selected : list[0]}
         </div>
         <div>
           <img
-            src="/dropdown.png"
+            src="./images/dropdown.png"
             style={{
               flex: 1,
               width: "5rem",
@@ -82,6 +83,7 @@ function DropDown(props: Props) {
                 setSelected(list[key]);
                 setClick(false);
               }}
+              defaultValue={0}
             >
               {list[key]}
             </DropdownItem>
@@ -112,7 +114,7 @@ const DropdownButton = styled.button`
   height: 100%;
   border: 1px solid #ddd;
   border-radius: 4px;
-  font-size: 14px;
+  font-size: 13px;
   cursor: pointer;
 `;
 

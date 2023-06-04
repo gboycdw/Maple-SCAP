@@ -4,18 +4,19 @@ import Select from "react-select";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import FilteringOptions from "./FilteringOptions";
+import DropDown from "../Components/Common/DropDown";
 
 function InputPage() {
   // 어빌리티 상태관리
-  const [firstAbility, setFirstAbility] = React.useState<any>("");
-  const [firstOption, setFirstOption] = React.useState<any>("");
-  const [firstValue, setFirstValue] = React.useState<any>("");
+  const [firstAbility, setFirstAbility] = React.useState<string>("");
+  const [firstOption, setFirstOption] = React.useState<any>([]);
+  const [firstValue, setFirstValue] = React.useState<string>("");
   const [secondAbility, setSecondAbility] = React.useState<string>("");
-  const [secondOption, setSecondOption] = React.useState<any>("");
-  const [secondValue, setSecondValue] = React.useState<any>("");
+  const [secondOption, setSecondOption] = React.useState<any>([]);
+  const [secondValue, setSecondValue] = React.useState<string>("");
   const [thirdAbility, setThirdAbility] = React.useState<string>("");
-  const [thirdOption, setThirdOption] = React.useState<any>("");
-  const [thirdValue, setThirdValue] = React.useState<any>("");
+  const [thirdOption, setThirdOption] = React.useState<any>([]);
+  const [thirdValue, setThirdValue] = React.useState<string>("");
 
   // 스텟 입력 관리
   const [server, setServer] = React.useState("");
@@ -82,9 +83,7 @@ function InputPage() {
   React.useEffect(() => {
     setFirstValue("");
     if (firstAbility.includes("재사용")) {
-      const selectedCategory: keyof typeof FilteringOptions.numbers =
-        "reset_Legendary";
-      setFirstOption(FilteringOptions.numbers[selectedCategory]);
+      setFirstOption(FilteringOptions.numbers.reset_Legendary);
     } else {
       setFirstOption([]);
     }
@@ -94,13 +93,9 @@ function InputPage() {
   React.useEffect(() => {
     setSecondValue("");
     if (secondAbility.includes("재사용")) {
-      const selectedCategory: keyof typeof FilteringOptions.numbers =
-        "reset_Unique";
-      setSecondOption(FilteringOptions.numbers[selectedCategory]);
+      setSecondOption(FilteringOptions.numbers.reset_Unique);
     } else if (secondAbility.includes("상태")) {
-      const selectedCategory: keyof typeof FilteringOptions.numbers =
-        "debuffBonusDamage";
-      setSecondOption(FilteringOptions.numbers[selectedCategory]);
+      setSecondOption(FilteringOptions.numbers.debuffBonusDamage);
     } else {
       setSecondOption([]);
     }
@@ -110,13 +105,9 @@ function InputPage() {
   React.useEffect(() => {
     setThirdValue("");
     if (thirdAbility.includes("재사용")) {
-      const selectedCategory: keyof typeof FilteringOptions.numbers =
-        "reset_Unique";
-      setThirdOption(FilteringOptions.numbers[selectedCategory]);
+      setThirdOption(FilteringOptions.numbers.reset_Unique);
     } else if (thirdAbility.includes("상태")) {
-      const selectedCategory: keyof typeof FilteringOptions.numbers =
-        "debuffBonusDamage";
-      setThirdOption(FilteringOptions.numbers[selectedCategory]);
+      setThirdOption(FilteringOptions.numbers.debuffBonusDamage);
     } else {
       setThirdOption([]);
     }
@@ -140,6 +131,9 @@ function InputPage() {
                     서버
                   </StyledSmallTitle>
                   <InputStat
+                    type="string"
+                    placeholder="본섭or리부트"
+                    title="정확하게 입력 안 하면 반영 안 됩니다."
                     onChange={(e) => {
                       setServer(e.target.value);
                     }}
@@ -152,6 +146,10 @@ function InputPage() {
                     레벨
                   </StyledSmallTitle>
                   <InputStat
+                    type="number"
+                    min={1}
+                    placeholder="레벨을 입력하세요"
+                    title="현재 레벨"
                     onChange={(e) => {
                       setLevel(parseInt(e.target.value));
                     }}
@@ -164,6 +162,9 @@ function InputPage() {
                     직업
                   </StyledSmallTitle>
                   <InputStat
+                    type="string"
+                    placeholder="직업을 입력하세요"
+                    title="정확하게 입력 안 하면 인식 못함."
                     onChange={(e) => {
                       setMyClass(e.target.value);
                     }}
@@ -180,7 +181,7 @@ function InputPage() {
                       margin: "1rem 1rem 1rem 3rem",
                     }}
                   >
-                    <img src="./nun.png" alt="Nun Image" />
+                    <img src="./images/nun.png" alt="Nun Image" />
                   </div>
                 </OtherContainer>
               </OtherContainerBox>
@@ -190,6 +191,10 @@ function InputPage() {
                     HP
                   </StyledSmallTitle>
                   <InputStat
+                    type="number"
+                    min={1}
+                    placeholder="총 HP 수치를 입력하세요"
+                    title="데몬어벤져는 반드시 총 HP를 입력할 것"
                     onChange={(e) => {
                       setHp(parseInt(e.target.value));
                     }}
@@ -202,6 +207,10 @@ function InputPage() {
                     STR
                   </StyledSmallTitle>
                   <InputStat
+                    type="number"
+                    min={1}
+                    placeholder="힘 수치를 입력하세요"
+                    title="메용 포함 수치"
                     onChange={(e) => {
                       setStr(parseInt(e.target.value));
                     }}
@@ -214,6 +223,10 @@ function InputPage() {
                     DEX
                   </StyledSmallTitle>
                   <InputStat
+                    type="number"
+                    min={1}
+                    placeholder="민첩 수치를 입력하세요"
+                    title="메용 포함 수치"
                     onChange={(e) => {
                       setDex(parseInt(e.target.value));
                     }}
@@ -226,6 +239,10 @@ function InputPage() {
                     INT
                   </StyledSmallTitle>
                   <InputStat
+                    type="number"
+                    min={1}
+                    placeholder="지능 수치를 입력하세요"
+                    title="메용 포함 수치"
                     onChange={(e) => {
                       setInt(parseInt(e.target.value));
                     }}
@@ -238,6 +255,10 @@ function InputPage() {
                     LUK
                   </StyledSmallTitle>
                   <InputStat
+                    type="number"
+                    min={1}
+                    placeholder="행운 수치를 입력하세요"
+                    title="메용 포함 수치"
                     onChange={(e) => {
                       setLuk(parseInt(e.target.value));
                     }}
@@ -250,6 +271,10 @@ function InputPage() {
                     메용X 주스텟
                   </StyledSmallTitle>
                   <InputStat
+                    type="number"
+                    min={1}
+                    placeholder="메이플 용사를 끈 주스텟을 입력하세요"
+                    title="선택한 컴뱃 적용 유무와 일치하는 지 확인할 것"
                     onChange={(e) => {
                       setNoYongsaStat(parseInt(e.target.value));
                     }}
@@ -266,11 +291,15 @@ function InputPage() {
                 <StyledStatTitle>스탯 공격력</StyledStatTitle>
                 <StyledStatContainer>
                   <InputStat
+                    type="number"
+                    placeholder="앞스공(낮은 숫자)을 입력하세요"
                     onChange={(e) => {
                       setHigherAtk(parseInt(e.target.value));
                     }}
                   />
                   <InputStat
+                    type="number"
+                    placeholder="뒷스공(큰 숫자)을 입력하세요"
                     onChange={(e) => {
                       setLowerAtk(parseInt(e.target.value));
                     }}
@@ -281,6 +310,10 @@ function InputPage() {
                 <OtherContainer>
                   <StyledSmallTitle>데미지</StyledSmallTitle>
                   <InputSmallBox
+                    type="number"
+                    min={0}
+                    placeholder="데미지%"
+                    title="스텟창에 표기되는 데미지 % 수치"
                     onChange={(e) => {
                       setDmg(parseInt(e.target.value));
                     }}
@@ -289,6 +322,10 @@ function InputPage() {
                 <OtherContainer>
                   <StyledSmallTitle>보스 데미지</StyledSmallTitle>
                   <InputSmallBox
+                    type="number"
+                    min={0}
+                    placeholder="보스 데미지%"
+                    title="스텟창에 표기되는 보스 데미지 % 수치"
                     onChange={(e) => {
                       setBossDmg(parseInt(e.target.value));
                     }}
@@ -298,11 +335,27 @@ function InputPage() {
               <OtherContainerBox>
                 <OtherContainer>
                   <StyledSmallTitle>최종 데미지</StyledSmallTitle>
-                  <InputSmallBox></InputSmallBox>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      textAlign: "center",
+                      border: "1px solid #aaa",
+                      width: "56.7%",
+                      backgroundColor: "#eee",
+                    }}
+                  >
+                    62
+                  </div>
                 </OtherContainer>
                 <OtherContainer>
                   <StyledSmallTitle>버프 지속시간</StyledSmallTitle>
                   <InputSmallBox
+                    type="number"
+                    min={0}
+                    placeholder="버프 지속시간%"
+                    title="스텟창에 표기되는 버프 지속시간 % 수치"
                     onChange={(e) => {
                       setBuffDuration(parseInt(e.target.value));
                     }}
@@ -313,6 +366,10 @@ function InputPage() {
                 <OtherContainer>
                   <StyledSmallTitle>방어율 무시</StyledSmallTitle>
                   <InputSmallBox
+                    type="number"
+                    min={0}
+                    placeholder="방무%"
+                    title="스텟창에 표기되는 방어율 무시 % 수치"
                     onChange={(e) => {
                       setIgnoreDef(parseInt(e.target.value));
                     }}
@@ -321,6 +378,10 @@ function InputPage() {
                 <OtherContainer>
                   <StyledSmallTitle>크리 데미지</StyledSmallTitle>
                   <InputSmallBox
+                    type="number"
+                    min={0}
+                    placeholder="크뎀%"
+                    title="스텟창에 표기되는 크리티컬 데미지 % 수치"
                     onChange={(e) => {
                       setCriticalDmg(parseInt(e.target.value));
                     }}
@@ -331,6 +392,10 @@ function InputPage() {
                 <OtherContainer>
                   <StyledSmallTitle>공격력</StyledSmallTitle>
                   <InputSmallBox
+                    type="number"
+                    min={0}
+                    placeholder="스텟창 총 공격력"
+                    title="스텟창에 표기되는 총 공격력 수치"
                     onChange={(e) => {
                       setAtk(parseInt(e.target.value));
                     }}
@@ -339,6 +404,10 @@ function InputPage() {
                 <OtherContainer>
                   <StyledSmallTitle>마력</StyledSmallTitle>
                   <InputSmallBox
+                    type="number"
+                    min={0}
+                    placeholder="스텟창 총 마력"
+                    title="스텟창에 표기되는 총 마력 수치"
                     onChange={(e) => {
                       setMagicAtk(parseInt(e.target.value));
                     }}
@@ -349,6 +418,10 @@ function InputPage() {
                 <OtherContainer>
                   <StyledSmallTitle>무기 공격력</StyledSmallTitle>
                   <InputSmallBox
+                    type="number"
+                    min={0}
+                    placeholder="무기 공격력"
+                    title="장착한 무기의 총 공격력 수치"
                     onChange={(e) => {
                       setWeaponAtk(parseInt(e.target.value));
                     }}
@@ -357,6 +430,10 @@ function InputPage() {
                 <OtherContainer>
                   <StyledSmallTitle>무기 마력</StyledSmallTitle>
                   <InputSmallBox
+                    type="number"
+                    min={0}
+                    placeholder="무기 마력"
+                    title="장착한 무기의 총 마력 수치"
                     onChange={(e) => {
                       setWeaponMagicAtk(parseInt(e.target.value));
                     }}
@@ -367,6 +444,10 @@ function InputPage() {
                 <OtherContainer>
                   <StyledSmallTitle>공격력%</StyledSmallTitle>
                   <InputSmallBox
+                    type="number"
+                    min={0}
+                    placeholder="장비 공격력%"
+                    title="장비 공격력% 합계, 소울웨폰 수치도 반드시 합산"
                     onChange={(e) => {
                       setAtkPercent(parseInt(e.target.value));
                     }}
@@ -375,6 +456,10 @@ function InputPage() {
                 <OtherContainer>
                   <StyledSmallTitle>마력%</StyledSmallTitle>
                   <InputSmallBox
+                    type="number"
+                    min={0}
+                    placeholder="장비 마력%"
+                    title="장비 마력% 합계, 소울웨폰 수치도 반드시 합산"
                     onChange={(e) => {
                       setMagicAtkPercent(parseInt(e.target.value));
                     }}
@@ -385,6 +470,10 @@ function InputPage() {
                 <OtherContainer>
                   <StyledSmallTitle>메르 유니온</StyledSmallTitle>
                   <InputSmallBox
+                    type="number"
+                    min={1}
+                    placeholder="메르 유니온 레벨"
+                    title="유니온에 배치한 메르세데스 캐릭터 레벨"
                     onChange={(e) => {
                       setMercedesUnion(parseInt(e.target.value));
                     }}
@@ -393,6 +482,10 @@ function InputPage() {
                 <OtherContainer>
                   <StyledSmallTitle>와헌 유니온</StyledSmallTitle>
                   <InputSmallBox
+                    type="number"
+                    min={1}
+                    placeholder="와헌 유니온 레벨"
+                    title="유니온에 배치한 와일드헌터 캐릭터 레벨"
                     onChange={(e) => {
                       setWildhunterUnion(parseInt(e.target.value));
                     }}
@@ -404,77 +497,61 @@ function InputPage() {
               </StyledAbilityTitle>
               <div style={{ margin: "1rem 0rem" }}>
                 <div style={{ display: "flex" }}>
-                  <SelectCategory
-                    options={FilteringOptions.options.first.filter(
-                      (data) =>
-                        data.label !== secondAbility &&
-                        data.label !== thirdAbility
+                  <DropDown
+                    list={FilteringOptions.options.first.filter(
+                      (data: string) =>
+                        data !== secondAbility && data !== thirdAbility
                     )}
-                    defaultValue={FilteringOptions.options.first[0]} // `value`를 사용하여 `firstAbility` 상태와 컴포넌트를 동기화합니다.
-                    styles={SelectStyles}
-                    onChange={(selectedOption: any) => {
-                      setFirstAbility(selectedOption.label);
-                    }}
+                    selected={firstAbility}
+                    setSelected={setFirstAbility}
+                    style={{ width: "37rem" }}
                   />
                   {firstAbility.includes("재사용") && (
-                    <SelectValue
-                      options={firstOption}
-                      value={firstOption.find(
-                        (options: any) => options.value === firstValue
-                      )}
-                      styles={SelectStyles}
-                      onChange={(selectedOption: any) => {
-                        setFirstValue(selectedOption.label);
-                      }}
+                    <DropDown
+                      list={firstOption}
+                      selected={firstValue}
+                      setSelected={setFirstValue}
+                      style={{ width: "11rem" }}
                     />
                   )}
                 </div>
                 <div style={{ display: "flex" }}>
-                  <SelectCategory
-                    options={FilteringOptions.options.second.filter(
-                      (data) =>
-                        data.label !== firstAbility &&
-                        data.label !== thirdAbility
+                  <DropDown
+                    list={FilteringOptions.options.second.filter(
+                      (data: string) =>
+                        data !== firstAbility && data !== thirdAbility
                     )}
-                    defaultValue={FilteringOptions.options.second[0]}
-                    styles={SelectStyles}
-                    onChange={(selectedOption: any) => {
-                      setSecondAbility(selectedOption.label);
-                    }}
+                    selected={secondAbility}
+                    setSelected={setSecondAbility}
+                    style={{ width: "37rem" }}
                   />
                   {(secondAbility.includes("재사용") ||
                     secondAbility.includes("상태")) && (
-                    <SelectValue
-                      options={secondOption}
-                      styles={SelectStyles}
-                      onChange={(selectedOption: any) => {
-                        setSecondValue(selectedOption.label);
-                      }}
+                    <DropDown
+                      list={secondOption}
+                      selected={secondValue}
+                      setSelected={setSecondValue}
+                      style={{ width: "11rem" }}
                     />
                   )}
                 </div>
                 <div style={{ display: "flex" }}>
-                  <SelectCategory
-                    options={FilteringOptions.options.third.filter(
-                      (data) =>
-                        data.label !== firstAbility &&
-                        data.label !== secondAbility
+                  <DropDown
+                    list={FilteringOptions.options.third.filter(
+                      (data: string) =>
+                        data !== secondAbility && data !== firstAbility
                     )}
-                    defaultValue={FilteringOptions.options.third[0]}
-                    styles={SelectStyles}
-                    onChange={(selectedOption: any) => {
-                      setThirdAbility(selectedOption.label);
-                    }}
+                    selected={thirdAbility}
+                    setSelected={setThirdAbility}
+                    style={{ width: "37rem" }}
                   />
                   {(thirdAbility.includes("재사용") ||
                     thirdAbility.includes("상태")) && (
-                    <SelectValue
-                      options={thirdOption}
-                      defaultValue={thirdOption[0]}
-                      styles={SelectStyles}
-                      onChange={(selectedOption: any) => {
-                        setThirdValue(selectedOption.label);
-                      }}
+                    <DropDown
+                      list={thirdOption}
+                      selected={thirdValue}
+                      setSelected={setThirdValue}
+                      style={{ width: "11rem" }}
                     />
                   )}
                 </div>
@@ -482,23 +559,86 @@ function InputPage() {
             </div>
           </StyledStatDetail>
           {/* 여기서부터 우측 페이지 */}
-          <StyledStatDetail style={{ width: "fit-content" }}>
+          <StyledStatDetail style={{ width: "40rem" }}>
             <div>
-              <StyledDetailTitle>도핑정보</StyledDetailTitle>
+              <StyledDetailTitle style={{ width: "37.8rem" }}>
+                추가정보
+              </StyledDetailTitle>
               <OtherContainerBox>
-                <OtherContainer>
-                  <StyledSmallTitle style={{ width: "13.44rem" }}>
-                    도핑정보
-                  </StyledSmallTitle>
-                  <InputStat></InputStat>
+                <OtherContainer
+                  style={{ display: "flex", justifyContent: "space-around" }}
+                >
+                  <StyledBuffButton>
+                    <img src="./images/noblessboss.png" alt="노블보공" />
+                  </StyledBuffButton>
+                  <StyledBuffButton>
+                    <img src="./images/noblessignore.png" alt="노블방무" />
+                  </StyledBuffButton>
+                  <StyledBuffButton>
+                    <img src="./images/noblessdam.png" alt="노블뎀지" />
+                  </StyledBuffButton>
+                  <StyledBuffButton>
+                    <img src="./images/noblesscridam.png" alt="노블크뎀" />
+                  </StyledBuffButton>
                 </OtherContainer>
               </OtherContainerBox>
               <OtherContainerBox>
-                <OtherContainer>
-                  <StyledSmallTitle style={{ width: "13.44rem" }}>
-                    정리할것들
-                  </StyledSmallTitle>
-                  <InputStat value="도핑, 링크, 쿨감수치, 특수소울 등 정리"></InputStat>
+                <OtherContainer
+                  style={{ display: "flex", justifyContent: "space-around" }}
+                >
+                  <StyledBuffButton>
+                    <img src="./images/hero.png" alt="영메" />
+                  </StyledBuffButton>
+                  <StyledBuffButton>
+                    <img src="./images/shiningred.png" alt="반빨별" />
+                  </StyledBuffButton>
+                  <div style={{ border: "1px solid #ccc" }}>
+                    <StyledBuffButton>
+                      <img src="./images/bighero.png" alt="2비약" />
+                    </StyledBuffButton>
+                    <StyledBuffButton>
+                      <img src="./images/legendhero.png" alt="2비약" />
+                    </StyledBuffButton>
+                    <StyledBuffButton>
+                      <img src="./images/jangbi.png" alt="2비약" />
+                    </StyledBuffButton>
+                  </div>
+                </OtherContainer>
+              </OtherContainerBox>
+              <OtherContainerBox>
+                <OtherContainer
+                  style={{ display: "flex", justifyContent: "space-around" }}
+                >
+                  <StyledBuffButton>
+                    <img src="./images/shiningred.png" alt="반빨별" />
+                  </StyledBuffButton>
+                  <StyledBuffButton>
+                    <img src="./images/extreme.png" alt="익스물약" />
+                  </StyledBuffButton>
+                  <StyledBuffButton>
+                    <img src="./images/guild.png" alt="길축" />
+                  </StyledBuffButton>
+                  <StyledBuffButton>
+                    <img src="./images/union.png" alt="유힘" />
+                  </StyledBuffButton>
+                  <StyledBuffButton>
+                    <img src="./images/urus.png" alt="우뿌" />
+                  </StyledBuffButton>
+                  <StyledBuffButton>
+                    <img src="./images/superpower.png" alt="슈퍼파워" />
+                  </StyledBuffButton>
+                </OtherContainer>
+              </OtherContainerBox>
+              <OtherContainerBox>
+                <OtherContainer
+                  style={{ display: "flex", justifyContent: "space-around" }}
+                >
+                  <StyledBuffButton>
+                    <img src="./images/fish.png" alt="뿌리기2" />
+                  </StyledBuffButton>
+                  <StyledBuffButton>
+                    <img src="favicon.ico" alt="주스텟물약" />
+                  </StyledBuffButton>
                 </OtherContainer>
               </OtherContainerBox>
             </div>
@@ -512,7 +652,6 @@ function InputPage() {
           </button>
           <button
             onClick={(e) => {
-              // setFirstValue(0);
               window.location.reload();
             }}
           >
@@ -520,9 +659,6 @@ function InputPage() {
           </button>
         </StyledDiv>
         <ReturnLink to="/"> ◀️ 돌아가기</ReturnLink>
-        <div>
-          {firstAbility} : {firstValue}
-        </div>
       </StyledContainer>
     </div>
   );
@@ -580,7 +716,7 @@ const StyledStatDetail = styled.div`
   padding: 1rem;
   border: 1px solid gray;
   border-radius: 1rem;
-  width: 50rem;
+  width: 360px;
   margin: 1rem 1rem;
 `;
 
@@ -618,6 +754,12 @@ const StyledStatContainer = styled.div`
 const InputStat = styled.input`
   display: flex;
   width: 100%;
+  text-align: center;
+  &::placeholder {
+    color: #bbb;
+    font-size: 11px;
+    /* font-style: italic; */
+  }
 `;
 
 //-----다른 스텟 부분을 꾸미는 컴포넌트-----//
@@ -655,7 +797,14 @@ const StyledSmallTitle = styled.div`
 
 const InputSmallBox = styled.input`
   display: flex;
+  justify-content: center;
   width: 57%;
+  text-align: center;
+  &::placeholder {
+    color: #bbb;
+    font-size: 11px;
+    /* font-style: italic; */
+  }
 `;
 
 // 어빌리티 타이틀
@@ -674,31 +823,11 @@ const StyledAbilityTitle = styled.div`
   padding-right: 1rem;
 `;
 
-// Select 라이브러리를 사용하여 만든 드롭다운 박스의 스타일 지정
-const SelectCategory = styled(Select)`
-  width: 36rem;
-  font-size: 1.8rem;
+// 버프 사용 버튼
+const StyledBuffButton = styled.button`
+  background-color: #fff;
+  margin: 1.8px;
+  width: 40px;
+  height: 40px;
+  border-radius: 14px;
 `;
-
-// Select 라이브러리를 사용하여 만든 드롭다운 박스의 스타일 지정
-const SelectValue = styled(Select)`
-  width: 11rem;
-  font-size: 1.8rem;
-`;
-
-// Select 라이브러리에서 사용할 세부 스타일 속성
-const SelectStyles = {
-  control: (provided: any) => ({
-    ...provided,
-    border: "1px solid #ccc",
-    borderRadius: "4px",
-  }),
-  option: (provided: any, state: any) => ({
-    ...provided,
-    backgroundColor: state.isSelected ? "#38D411" : "white",
-    color: state.isSelected ? "white" : "black",
-    ":hover": {
-      backgroundColor: state.isSelected ? "#38D411" : "#96DF84",
-    },
-  }),
-};
