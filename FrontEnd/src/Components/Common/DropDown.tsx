@@ -9,6 +9,7 @@ type Props = {
     width?: string;
     height?: string;
     backgroundColor?: string;
+    fontSize?: string;
   };
 };
 interface DropdownItemProps {
@@ -114,7 +115,8 @@ const DropdownButton = styled.button`
   height: 100%;
   border: 1px solid #ddd;
   border-radius: 4px;
-  font-size: 13px;
+  font-size: ${(props) =>
+    props.style?.fontSize ? props.style.fontSize : "13px"};
   cursor: pointer;
 `;
 
