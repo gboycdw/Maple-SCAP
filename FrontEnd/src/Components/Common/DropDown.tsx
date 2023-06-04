@@ -57,6 +57,7 @@ function DropDown(props: Props) {
           setClick(!click);
         }}
         defaultValue={0}
+        style={props.style}
       >
         <div style={{ overflow: "hidden", flex: 3 }}>
           {selected.length > 0 ? selected : list[0]}

@@ -30,17 +30,23 @@ html {
 }
 
 /* 반응형  */
-@media all and (max-width: 1400px) {
+@media all and (max-width: 3300px) {
   html {
     font-size: 44%;
   }
 }
-@media all and (min-width: 1400px) and (max-width: 1550px) {
+
+/* @media all and (max-width: 1400px) {
+  html {
+    font-size: 44%;
+  }
+} */
+/* @media all and (min-width: 1400px) and (max-width: 1550px) {
   html {
     font-size: 46.5%;
   }
-}
-@media all and (min-width: 1550px) and (max-width: 1700px) {
+} */
+/* @media all and (min-width: 1550px) and (max-width: 1700px) {
   html {
     font-size: 51.5%;
   }
@@ -55,8 +61,8 @@ html {
   html {
     font-size: 68.5%;
   }
-}
-@media all and (min-width: 2350px) and (max-width: 2600px) {
+} */
+/* @media all and (min-width: 2350px) and (max-width: 2600px) {
   html {
     font-size: 78%;
   }
@@ -70,8 +76,8 @@ html {
   html {
     font-size: 96.5%;
   }
-}
-@media all and (min-width: 3200px) and (max-width: 3500px) {
+} */
+/* @media all and (min-width: 3200px) and (max-width: 3500px) {
   html {
     font-size: 106%;
   }
@@ -85,4 +91,4 @@ html {
   html {
     font-size: 128.5%;
   }
-}
+} */
