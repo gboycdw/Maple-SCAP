@@ -91,6 +91,7 @@ function InputPage() {
     React.useState(false);
   const [dopingDragonsMeal, setDopingDragonsMeal] = React.useState(false);
 
+  // 스텟 물약
   const [dopingStatPotion, setDopingStatPotion] = React.useState(false);
   const [dopingStatPotionValue, setDopingStatPotionValue] = React.useState(0);
 
@@ -349,6 +350,11 @@ const StyledDiv = styled.div`
   padding: 1rem;
   border: 1px solid gray;
   border-radius: 1rem;
+
+  @media (max-width: 1100px) {
+    display: grid;
+    place-items: center;
+  }
 `;
 
 const EndButton = styled.button`
