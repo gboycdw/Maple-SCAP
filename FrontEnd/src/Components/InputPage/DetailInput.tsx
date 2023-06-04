@@ -458,19 +458,3 @@ const InputSmallBox = styled.input`
     /* font-style: italic; */
   }
 `;
-
-// 어빌리티 타이틀
-const StyledAbilityTitle = styled.div`
-  background: linear-gradient(to top, rgb(204, 221, 136), rgb(136, 187, 34));
-  color: white;
-  text-shadow: -1px -1px 0 rgb(85, 136, 17), 1px -1px 0 rgb(85, 136, 17),
-    -1px 1px 0 rgb(85, 136, 17), 1px 1px 0 rgb(85, 136, 17);
-  height: 4rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-radius: 1rem;
-  padding-left: 1rem;
-  margin-top: 0.8rem;
-  padding-right: 1rem;
-`;
