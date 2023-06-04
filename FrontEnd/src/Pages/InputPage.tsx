@@ -77,15 +77,23 @@ function InputPage() {
   const [noblessIgnoreValue, setNoblessIgnoreValue] = React.useState(0);
   const [herosHawl, setHerosHawl] = React.useState(false);
   const [dopingShiningRed, setDopingShiningRed] = React.useState(false);
-  const [dopingBigHero, setDopingBigHero] = React.useState(false);
-  const [dopingLegendHero, setDopingLegendHero] = React.useState(false);
-  const [dopingJangBi, setDopingJangBi] = React.useState(false);
   const [dopingSuperPower, setDopingSuperPower] = React.useState(false);
   const [dopingExtreme, setDopingExtreme] = React.useState(false);
   const [dopingGuildBlessing, setDopingGuildBlessing] = React.useState(false);
   const [dopingUnionsPower, setDopingUnionsPower] = React.useState(false);
   const [dopingUrus, setDopingUrus] = React.useState(false);
+
+  // 2비약 선택
+  const [dopingBigHero, setDopingBigHero] = React.useState(false);
+  const [dopingLegendHero, setDopingLegendHero] = React.useState(false);
+  const [dopingJangBi, setDopingJangBi] = React.useState(false);
+
+  // 뿌리기 선택
   const [dopingFish, setDopingFish] = React.useState(false);
+  const [dopingRebootAtkPotion, setDopingRebootAtkPotion] =
+    React.useState(false);
+  const [dopingDragonsMeal, setDopingDragonsMeal] = React.useState(false);
+
   const [dopingStatPotion, setDopingStatPotion] = React.useState(false);
   const [dopingStatPotionValue, setDopingStatPotionValue] = React.useState(0);
 
@@ -162,6 +170,8 @@ function InputPage() {
         dopingUnionsPower: dopingUnionsPower,
         dopingUrus: dopingUrus,
         dopingFish: dopingFish,
+        dopingRebootAtkPotion: dopingRebootAtkPotion,
+        dopingDragonsMeal: dopingDragonsMeal,
         dopingStatPotion: dopingStatPotion ? dopingStatPotionValue : 0,
       },
     };
@@ -439,20 +449,6 @@ function InputPage() {
                   />
                 </OtherContainer>
               </OtherContainerBox>
-              {/* <OtherContainerBox>
-                <OtherContainer>
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      margin: "1rem 1rem 1rem 3rem",
-                    }}
-                  >
-                    <img src="./images/nun.png" alt="Nun Image" />
-                  </div>
-                </OtherContainer>
-              </OtherContainerBox> */}
               <OtherContainerBox>
                 <OtherContainer>
                   <StyledSmallTitle style={{ width: "13.44rem" }}>
@@ -958,11 +954,11 @@ function InputPage() {
             </div>
           </StyledStatDetail>
           {/* 여기서부터 우측 페이지 */}
-          <StyledStatDetail style={{ width: "40rem" }}>
+          <StyledStatDetail style={{ width: "46.5rem" }}>
             <div>
-              <StyledDetailTitle style={{ width: "37.8rem" }}>
-                추가정보
-              </StyledDetailTitle>
+              <StyledDopingTitle style={{ width: "44.4rem" }}>
+                도핑정보
+              </StyledDopingTitle>
               {/* 도핑 전체선택 on / off */}
               <OtherContainerBox>
                 <OtherContainer
@@ -1005,6 +1001,8 @@ function InputPage() {
                       setDopingUnionsPower(false);
                       setDopingUrus(false);
                       setDopingFish(false);
+                      setDopingRebootAtkPotion(false);
+                      setDopingDragonsMeal(false);
                       setDopingStatPotion(false);
                     }}
                   >
@@ -1014,115 +1012,173 @@ function InputPage() {
               </OtherContainerBox>
               <OtherContainerBox>
                 <OtherContainer
-                  style={{ display: "flex", justifyContent: "space-around" }}
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-around",
+                    marginLeft: "-0.7rem",
+                  }}
                 >
-                  <StyledBuffButton
-                    onClick={() => {
-                      setNoblessBoss(!noblessBoss);
-                    }}
-                  >
-                    {!noblessBoss ? (
-                      <NonSelectedImg
-                        src="./images/noblessboss_no.png"
-                        alt="노블보공"
-                      />
-                    ) : (
-                      <SelectedImg
-                        src="./images/noblessboss.png"
-                        alt="노블보공"
-                      />
-                    )}
-                  </StyledBuffButton>
-                  <InputDopingBox
-                    type="number"
-                    min={0}
-                    max={15}
-                    title="노블 보공 레벨, 숫자 몇을 입력하든 0~15사이의 값이 제출됩니다."
-                    onChange={(e) => {
-                      let value = 0;
-                      if (parseInt(e.target.value) >= 15) {
-                        value = 15;
-                      } else if (parseInt(e.target.value) <= 0) {
-                        value = 0;
-                      } else {
-                        value = parseInt(e.target.value);
-                      }
-                      setNoblessBossValue(value);
-                    }}
-                  />
-                  <StyledBuffButton
-                    onClick={() => {
-                      setNoblessDmg(!noblessDmg);
-                    }}
-                  >
-                    {!noblessDmg ? (
-                      <NonSelectedImg
-                        src="./images/noblessdam_no.png"
-                        alt="노블뎀지"
-                      />
-                    ) : (
-                      <SelectedImg
-                        src="./images/noblessdam.png"
-                        alt="노블뎀지"
-                      />
-                    )}
-                  </StyledBuffButton>
-                  <InputDopingBox
-                    type="number"
-                    min={0}
-                    max={15}
-                    title="노블 데미지 레벨, 숫자 몇을 입력하든 0~15사이의 값이 제출됩니다."
-                    onChange={(e) => {
-                      let value = 0;
-                      if (parseInt(e.target.value) >= 15) {
-                        value = 15;
-                      } else if (parseInt(e.target.value) <= 0) {
-                        value = 0;
-                      } else {
-                        value = parseInt(e.target.value);
-                      }
-                      setNoblessDmgValue(value);
-                    }}
-                  />
-                  <StyledBuffButton
-                    onClick={() => {
-                      setNoblessCriDmg(!noblessCriDmg);
-                    }}
-                  >
-                    {!noblessCriDmg ? (
-                      <NonSelectedImg
-                        src="./images/noblesscridam_no.png"
-                        alt="노블크뎀"
-                      />
-                    ) : (
-                      <SelectedImg
-                        src="./images/noblesscridam.png"
-                        alt="노블크뎀"
-                      />
-                    )}
-                  </StyledBuffButton>
-                  <InputDopingBox
-                    type="number"
-                    min={0}
-                    max={15}
-                    title="노블 크뎀 레벨, 숫자 몇을 입력하든 0~15사이의 값이 제출됩니다."
-                    onChange={(e) => {
-                      let value = 0;
-                      if (parseInt(e.target.value) >= 15) {
-                        value = 15;
-                      } else if (parseInt(e.target.value) <= 0) {
-                        value = 0;
-                      } else {
-                        value = parseInt(e.target.value);
-                      }
-                      setNoblessCriDmgValue(value);
-                    }}
-                  />
+                  <div style={{ display: "inline-flex", alignItems: "center" }}>
+                    <StyledBuffButton
+                      onClick={() => {
+                        setNoblessBoss(!noblessBoss);
+                      }}
+                    >
+                      {!noblessBoss ? (
+                        <NonSelectedImg
+                          src="./images/noblessboss_no.png"
+                          alt="노블보공"
+                        />
+                      ) : (
+                        <SelectedImg
+                          src="./images/noblessboss.png"
+                          alt="노블보공"
+                        />
+                      )}
+                    </StyledBuffButton>
+                    <InputDopingBox
+                      // type="number"
+                      style={{ width: "35px" }}
+                      min={0}
+                      max={15}
+                      placeholder="~15"
+                      title="노블 보공 레벨, 숫자 몇을 입력하든 0~15사이의 값이 제출됩니다."
+                      onChange={(e) => {
+                        let value = 0;
+                        if (parseInt(e.target.value) >= 15) {
+                          value = 15;
+                        } else if (parseInt(e.target.value) <= 0) {
+                          value = 0;
+                        } else {
+                          value = parseInt(e.target.value);
+                        }
+                        setNoblessBossValue(value);
+                      }}
+                    />
+                  </div>
+                  <div style={{ display: "inline-flex", alignItems: "center" }}>
+                    <StyledBuffButton
+                      onClick={() => {
+                        setNoblessDmg(!noblessDmg);
+                      }}
+                    >
+                      {!noblessDmg ? (
+                        <NonSelectedImg
+                          src="./images/noblessdam_no.png"
+                          alt="노블뎀지"
+                        />
+                      ) : (
+                        <SelectedImg
+                          src="./images/noblessdam.png"
+                          alt="노블뎀지"
+                        />
+                      )}
+                    </StyledBuffButton>
+                    <InputDopingBox
+                      // type="number"
+                      style={{ width: "35px" }}
+                      min={0}
+                      max={15}
+                      placeholder="~15"
+                      title="노블 데미지 레벨, 숫자 몇을 입력하든 0~15사이의 값이 제출됩니다."
+                      onChange={(e) => {
+                        let value = 0;
+                        if (parseInt(e.target.value) >= 15) {
+                          value = 15;
+                        } else if (parseInt(e.target.value) <= 0) {
+                          value = 0;
+                        } else {
+                          value = parseInt(e.target.value);
+                        }
+                        setNoblessDmgValue(value);
+                      }}
+                    />
+                  </div>
+                  <div style={{ display: "inline-flex", alignItems: "center" }}>
+                    <StyledBuffButton
+                      onClick={() => {
+                        setNoblessCriDmg(!noblessCriDmg);
+                      }}
+                    >
+                      {!noblessCriDmg ? (
+                        <NonSelectedImg
+                          src="./images/noblesscridam_no.png"
+                          alt="노블크뎀"
+                        />
+                      ) : (
+                        <SelectedImg
+                          src="./images/noblesscridam.png"
+                          alt="노블크뎀"
+                        />
+                      )}
+                    </StyledBuffButton>
+                    <InputDopingBox
+                      // type="number"
+                      style={{ width: "35px" }}
+                      min={0}
+                      max={15}
+                      placeholder="~15"
+                      title="노블 크뎀 레벨, 숫자 몇을 입력하든 0~15사이의 값이 제출됩니다."
+                      onChange={(e) => {
+                        let value = 0;
+                        if (parseInt(e.target.value) >= 15) {
+                          value = 15;
+                        } else if (parseInt(e.target.value) <= 0) {
+                          value = 0;
+                        } else {
+                          value = parseInt(e.target.value);
+                        }
+                        setNoblessCriDmgValue(value);
+                      }}
+                    />
+                  </div>
+                  <div style={{ display: "inline-flex", alignItems: "center" }}>
+                    <StyledBuffButton
+                      onClick={() => {
+                        setNoblessIgnore(!noblessIgnore);
+                      }}
+                    >
+                      {!noblessIgnore ? (
+                        <NonSelectedImg
+                          src="./images/noblessignore_no.png"
+                          alt="노블방무"
+                        />
+                      ) : (
+                        <SelectedImg
+                          src="./images/noblessignore.png"
+                          alt="노블방무"
+                        />
+                      )}
+                    </StyledBuffButton>
+                    <InputDopingBox
+                      // type="number"
+                      style={{ width: "35px" }}
+                      min={0}
+                      max={15}
+                      placeholder="~15"
+                      title="노블 방무 레벨, 숫자 몇을 입력하든 0~15사이의 값이 제출됩니다."
+                      onChange={(e) => {
+                        let value = 0;
+                        if (parseInt(e.target.value) >= 15) {
+                          value = 15;
+                        } else if (parseInt(e.target.value) <= 0) {
+                          value = 0;
+                        } else {
+                          value = parseInt(e.target.value);
+                        }
+                        setNoblessIgnoreValue(value);
+                      }}
+                    />
+                  </div>
                 </OtherContainer>
               </OtherContainerBox>
               <OtherContainerBox>
                 <OtherContainer
-                  style={{ display: "flex", justifyContent: "space-around" }}
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-around",
+                    marginLeft: "-0.4rem",
+                  }}
                 >
                   <StyledBuffButton
                     onClick={() => {
@@ -1149,67 +1205,6 @@ function InputPage() {
                       <SelectedImg src="./images/shiningred.png" alt="반빨별" />
                     )}
                   </StyledBuffButton>
-                  <div
-                    style={{ border: "1px solid #ccc", borderRadius: "12px" }}
-                  >
-                    <StyledBuffButton
-                      onClick={() => {
-                        setDopingBigHero(!dopingBigHero);
-                        setDopingLegendHero(false);
-                        setDopingJangBi(false);
-                      }}
-                    >
-                      {!dopingBigHero ? (
-                        <NonSelectedImg
-                          src="./images/bighero_no.png"
-                          alt="2비약"
-                        />
-                      ) : (
-                        <SelectedImg src="./images/bighero.png" alt="2비약" />
-                      )}
-                    </StyledBuffButton>
-                    <StyledBuffButton
-                      onClick={() => {
-                        setDopingBigHero(false);
-                        setDopingLegendHero(!dopingLegendHero);
-                        setDopingJangBi(false);
-                      }}
-                    >
-                      {!dopingLegendHero ? (
-                        <NonSelectedImg
-                          src="./images/legendhero_no.png"
-                          alt="2비약"
-                        />
-                      ) : (
-                        <SelectedImg
-                          src="./images/legendhero.png"
-                          alt="2비약"
-                        />
-                      )}
-                    </StyledBuffButton>
-                    <StyledBuffButton
-                      onClick={() => {
-                        setDopingBigHero(false);
-                        setDopingLegendHero(false);
-                        setDopingJangBi(!dopingJangBi);
-                      }}
-                    >
-                      {!dopingJangBi ? (
-                        <NonSelectedImg
-                          src="./images/jangbi_no.png"
-                          alt="2비약"
-                        />
-                      ) : (
-                        <SelectedImg src="./images/jangbi.png" alt="2비약" />
-                      )}
-                    </StyledBuffButton>
-                  </div>
-                </OtherContainer>
-              </OtherContainerBox>
-              <OtherContainerBox>
-                <OtherContainer
-                  style={{ display: "flex", justifyContent: "space-around" }}
-                >
                   <StyledBuffButton
                     onClick={() => {
                       setDopingSuperPower(!dopingSuperPower);
@@ -1274,26 +1269,124 @@ function InputPage() {
                       <SelectedImg src="./images/urus.png" alt="우뿌" />
                     )}
                   </StyledBuffButton>
+                </OtherContainer>
+              </OtherContainerBox>
+              {/* 2비약 종류를 선택하는 공간 */}
+              <OtherContainerBox
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "space-around",
+                }}
+              >
+                <div style={{ border: "1px solid #ccc", borderRadius: "12px" }}>
+                  <StyledBuffButton
+                    onClick={() => {
+                      setDopingBigHero(!dopingBigHero);
+                      setDopingLegendHero(false);
+                      setDopingJangBi(false);
+                    }}
+                  >
+                    {!dopingBigHero ? (
+                      <NonSelectedImg
+                        src="./images/bighero_no.png"
+                        alt="2비약"
+                      />
+                    ) : (
+                      <SelectedImg src="./images/bighero.png" alt="2비약" />
+                    )}
+                  </StyledBuffButton>
+                  <StyledBuffButton
+                    onClick={() => {
+                      setDopingBigHero(false);
+                      setDopingLegendHero(!dopingLegendHero);
+                      setDopingJangBi(false);
+                    }}
+                  >
+                    {!dopingLegendHero ? (
+                      <NonSelectedImg
+                        src="./images/legendhero_no.png"
+                        alt="2비약"
+                      />
+                    ) : (
+                      <SelectedImg src="./images/legendhero.png" alt="2비약" />
+                    )}
+                  </StyledBuffButton>
+                  <StyledBuffButton
+                    onClick={() => {
+                      setDopingBigHero(false);
+                      setDopingLegendHero(false);
+                      setDopingJangBi(!dopingJangBi);
+                    }}
+                  >
+                    {!dopingJangBi ? (
+                      <NonSelectedImg
+                        src="./images/jangbi_no.png"
+                        alt="2비약"
+                      />
+                    ) : (
+                      <SelectedImg src="./images/jangbi.png" alt="2비약" />
+                    )}
+                  </StyledBuffButton>
+                </div>
+                {/* 뿌리기 종류를 선택하는 공간 */}
+                <div style={{ border: "1px solid #ccc", borderRadius: "12px" }}>
                   <StyledBuffButton
                     onClick={() => {
                       setDopingFish(!dopingFish);
+                      setDopingRebootAtkPotion(false);
+                      setDopingDragonsMeal(false);
                     }}
                   >
                     {!dopingFish ? (
-                      <NonSelectedImg
-                        src="./images/fish_no.png"
-                        alt="뿌리기2"
-                      />
+                      <NonSelectedImg src="./images/fish_no.png" alt="붕뿌X" />
                     ) : (
-                      <SelectedImg src="./images/fish.png" alt="뿌리기2" />
+                      <SelectedImg src="./images/fish.png" alt="붕뿌O" />
                     )}
                   </StyledBuffButton>
-                </OtherContainer>
+                  <StyledBuffButton
+                    onClick={() => {
+                      setDopingFish(false);
+                      setDopingRebootAtkPotion(!dopingRebootAtkPotion);
+                      setDopingDragonsMeal(false);
+                    }}
+                  >
+                    {!dopingRebootAtkPotion ? (
+                      <NonSelectedImg
+                        src="./images/reboot_atkpotion_no.png"
+                        alt="5단계공격력X"
+                      />
+                    ) : (
+                      <SelectedImg
+                        src="./images/reboot_atkpotion.png"
+                        alt="5단계공격력O"
+                      />
+                    )}
+                  </StyledBuffButton>
+                  <StyledBuffButton
+                    onClick={() => {
+                      setDopingFish(false);
+                      setDopingRebootAtkPotion(false);
+                      setDopingDragonsMeal(!dopingDragonsMeal);
+                    }}
+                  >
+                    {!dopingDragonsMeal ? (
+                      <NonSelectedImg
+                        src="./images/dragonsmeal_no.png"
+                        alt="이유식X"
+                      />
+                    ) : (
+                      <SelectedImg
+                        src="./images/dragonsmeal.png"
+                        alt="이유식O"
+                      />
+                    )}
+                  </StyledBuffButton>
+                </div>
               </OtherContainerBox>
+
               <OtherContainerBox>
-                <OtherContainer
-                  style={{ display: "flex", justifyContent: "space-around" }}
-                >
+                <OtherContainer>
                   <StyledBuffButton
                     onClick={() => {
                       setDopingStatPotion(!dopingStatPotion);
@@ -1312,9 +1405,11 @@ function InputPage() {
                     )}
                   </StyledBuffButton>
                   <InputDopingBox
-                    type="number"
+                    // type="number"
+                    style={{ width: "35px" }}
                     min={0}
                     max={30}
+                    placeholder="~30"
                     title="주스텟 물약 수치(0~30) 입력"
                     onChange={(e) => {
                       let value = 0;
@@ -1326,40 +1421,6 @@ function InputPage() {
                         value = parseInt(e.target.value);
                       }
                       setDopingStatPotionValue(value);
-                    }}
-                  />
-                  <StyledBuffButton
-                    onClick={() => {
-                      setNoblessIgnore(!noblessIgnore);
-                    }}
-                  >
-                    {!noblessIgnore ? (
-                      <NonSelectedImg
-                        src="./images/noblessignore_no.png"
-                        alt="노블방무"
-                      />
-                    ) : (
-                      <SelectedImg
-                        src="./images/noblessignore.png"
-                        alt="노블방무"
-                      />
-                    )}
-                  </StyledBuffButton>
-                  <InputDopingBox
-                    type="number"
-                    min={0}
-                    max={15}
-                    title="노블 방무 레벨, 숫자 몇을 입력하든 0~15사이의 값이 제출됩니다."
-                    onChange={(e) => {
-                      let value = 0;
-                      if (parseInt(e.target.value) >= 15) {
-                        value = 15;
-                      } else if (parseInt(e.target.value) <= 0) {
-                        value = 0;
-                      } else {
-                        value = parseInt(e.target.value);
-                      }
-                      setNoblessIgnoreValue(value);
                     }}
                   />
                 </OtherContainer>
@@ -1570,15 +1631,6 @@ const StyledBuffButton = styled.button`
   border-radius: 14px;
 `;
 
-// 버프 사용 버튼
-const StyledBlankButton = styled.div`
-  background-color: #fff;
-  margin: 1.8px;
-  width: 40px;
-  height: 40px;
-  border-radius: 14px;
-`;
-
 const InputDopingBox = styled.input`
   display: flex;
   justify-content: center;
@@ -1593,6 +1645,20 @@ const InputDopingBox = styled.input`
     font-size: 11px;
     font-style: italic;
   } */
+`;
+
+// 도핑 선택 타이틀
+const StyledDopingTitle = styled.div`
+  background: linear-gradient(to top, rgb(222, 223, 163), rgb(219, 188, 10));
+  color: white;
+  text-shadow: -1px -1px 0 rgb(228, 211, 59), 1px -1px 0 rgb(228, 211, 59),
+    -1px 1px 0 rgb(228, 211, 59), 1px 1px 0 rgb(228, 211, 59);
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  border-radius: 1rem;
+  padding-left: 1rem;
+  margin-bottom: 0.8rem;
 `;
 
 const DopingSelectButton = styled.button`
