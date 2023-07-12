@@ -4,16 +4,27 @@ import "./App.css";
 import InputPage from "./Pages/InputPage/InputPage";
 import MainPage from "./Pages/MainPage/MainPage";
 import ImageUploadPage from "./Pages/InputPage/ImageUploadPage";
+import ResultPage from "./Pages/ResultPage/ResultPage";
+import {
+  RecoilRoot,
+  atom,
+  selector,
+  useRecoilState,
+  useRecoilValue,
+} from "recoil";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/input" element={<InputPage />} />
-        <Route path="/image" element={<ImageUploadPage />} />
-        <Route path="/" element={<MainPage />} />
-      </Routes>
-    </BrowserRouter>
+    <RecoilRoot>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/input" element={<InputPage />} />
+          <Route path="/result" element={<ResultPage />} />
+          <Route path="/image" element={<ImageUploadPage />} />
+          <Route path="/" element={<MainPage />} />
+        </Routes>
+      </BrowserRouter>
+    </RecoilRoot>
   );
 }
 
