@@ -1,12 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import CommonInput from "../../Components/InputPage/CommonInput";
 import DetailInput from "../../Components/InputPage/DetailInput";
 import DopingInput from "../../Components/InputPage/DopingInput";
 
 function InputPage() {
+  const navigate = useNavigate();
+
   // 어빌리티 상태관리
   const [firstAbility, setFirstAbility] = React.useState<string>("");
   const [firstOption, setFirstOption] = React.useState<any>([]);
@@ -304,6 +306,7 @@ function InputPage() {
           <EndButton
             onClick={() => {
               submitData();
+              navigate("/result");
             }}
           >
             제출하기
