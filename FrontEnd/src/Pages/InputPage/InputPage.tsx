@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import CommonInput from "../../Components/InputPage/CommonInput";
 import DetailInput from "../../Components/InputPage/DetailInput";
 import DopingInput from "../../Components/InputPage/DopingInput";
@@ -13,10 +13,9 @@ import {
   LinkState,
   DopingState,
 } from "../../Recoil/State";
+import Modal from "../../Components/Common/Modal";
 
 function InputPage() {
-  const navigate = useNavigate();
-
   // 어빌리티 상태관리
   const [firstAbility, setFirstAbility] = useRecoilState(
     AbilityState.firstAbilityState
@@ -333,6 +332,8 @@ function InputPage() {
     setDopingStatPotionValue("");
   }
 
+  const [showModal, setShowModal] = React.useState(false);
+
   return (
     <div
       style={{
@@ -347,11 +348,17 @@ function InputPage() {
           <DetailInput />
           <DopingInput />
         </StyledDiv>
+        {showModal && (
+          <Modal showModal={showModal} setShowModal={setShowModal} />
+        )}
         <div>
           <EndButton
             onClick={() => {
               submitData();
-              navigate("/result");
+              if (true) {
+                // 추후 검증 로직 추가
+                setShowModal(true);
+              }
             }}
           >
             제출하기
