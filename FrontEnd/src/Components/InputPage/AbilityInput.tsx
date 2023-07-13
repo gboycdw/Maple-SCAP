@@ -2,28 +2,38 @@ import React from "react";
 import styled from "styled-components";
 import DropDown from "../Common/DropDown";
 import FilteringOptions from "../Common/FilteringOptions";
+import { useRecoilState } from "recoil";
+import { AbilityState } from "../../Recoil/States/AbilityState";
 
-function Ability(props: any) {
-  const {
-    secondAbility,
-    thirdAbility,
-    firstAbility,
-    setFirstAbility,
-    firstOption,
-    firstValue,
-    setFirstValue,
-    setSecondAbility,
-    secondOption,
-    secondValue,
-    setSecondValue,
-    setThirdAbility,
-    thirdOption,
-    thirdValue,
-    setThirdValue,
-    setFirstOption,
-    setSecondOption,
-    setThirdOption,
-  } = props;
+function Ability() {
+  // 어빌리티 상태관리
+  const [firstAbility, setFirstAbility] = useRecoilState(
+    AbilityState.firstAbilityState
+  );
+  const [firstOption, setFirstOption] = useRecoilState(
+    AbilityState.firstOptionState
+  );
+  const [firstValue, setFirstValue] = useRecoilState(
+    AbilityState.firstValueState
+  );
+  const [secondAbility, setSecondAbility] = useRecoilState(
+    AbilityState.secondAbilityState
+  );
+  const [secondOption, setSecondOption] = useRecoilState(
+    AbilityState.secondOptionState
+  );
+  const [secondValue, setSecondValue] = useRecoilState(
+    AbilityState.secondValueState
+  );
+  const [thirdAbility, setThirdAbility] = useRecoilState(
+    AbilityState.thirdAbilityState
+  );
+  const [thirdOption, setThirdOption] = useRecoilState(
+    AbilityState.thirdOptionState
+  );
+  const [thirdValue, setThirdValue] = useRecoilState(
+    AbilityState.thirdValueState
+  );
 
   // 첫번째 줄 어빌리티
   React.useEffect(() => {

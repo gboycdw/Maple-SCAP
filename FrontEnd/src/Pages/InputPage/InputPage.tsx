@@ -1,98 +1,182 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import CommonInput from "../../Components/InputPage/CommonInput";
 import DetailInput from "../../Components/InputPage/DetailInput";
 import DopingInput from "../../Components/InputPage/DopingInput";
+import { AbilityState } from "../../Recoil/States/AbilityState";
+import { SpecialState } from "../../Recoil/States/SpecialState";
+import { StatState } from "../../Recoil/States/StatState";
+import { DetailState } from "../../Recoil/States/DetailState";
+import { LinkState } from "../../Recoil/States/LinkState";
+import { DopingState } from "../../Recoil/States/DopingState";
+import { useRecoilState } from "recoil";
 
 function InputPage() {
+  const navigate = useNavigate();
+
   // 어빌리티 상태관리
-  const [firstAbility, setFirstAbility] = React.useState<string>("");
-  const [firstOption, setFirstOption] = React.useState<any>([]);
-  const [firstValue, setFirstValue] = React.useState<string>("");
-  const [secondAbility, setSecondAbility] = React.useState<string>("");
-  const [secondOption, setSecondOption] = React.useState<any>([]);
-  const [secondValue, setSecondValue] = React.useState<string>("");
-  const [thirdAbility, setThirdAbility] = React.useState<string>("");
-  const [thirdOption, setThirdOption] = React.useState<any>([]);
-  const [thirdValue, setThirdValue] = React.useState<string>("");
+  const [firstAbility, setFirstAbility] = useRecoilState(
+    AbilityState.firstAbilityState
+  );
+  const [firstValue, setFirstValue] = useRecoilState(
+    AbilityState.firstValueState
+  );
+  const [secondAbility, setSecondAbility] = useRecoilState(
+    AbilityState.secondAbilityState
+  );
+  const [secondValue, setSecondValue] = useRecoilState(
+    AbilityState.secondValueState
+  );
+  const [thirdAbility, setThirdAbility] = useRecoilState(
+    AbilityState.thirdAbilityState
+  );
+  const [thirdValue, setThirdValue] = useRecoilState(
+    AbilityState.thirdValueState
+  );
 
   // 특수 정보 관리
-  const [reboot, setReboot] = React.useState(false);
-  const [genesis, setGenesis] = React.useState(false);
-  const [combat, setCombat] = React.useState(true);
-  const [mugongSoul, setMugongSoul] = React.useState(0);
-  const [useRuinForceShild, setUseRuinForceShild] = React.useState(false);
-  const [epiSoul, setEpiSoul] = React.useState(0);
-  const [oneHandSword, setOneHandSword] = React.useState(false);
+  const [reboot, setReboot] = useRecoilState(SpecialState.rebootState);
+  const [genesis, setGenesis] = useRecoilState(SpecialState.genesisState);
+  const [combat, setCombat] = useRecoilState(SpecialState.combatState);
+  const [mugongSoul, setMugongSoul] = useRecoilState(
+    SpecialState.mugongSoulState
+  );
+  const [useRuinForceShild, setUseRuinForceShild] = useRecoilState(
+    SpecialState.useRuinForceShildState
+  );
+  const [epiSoul, setEpiSoul] = useRecoilState(SpecialState.epiSoulState);
+  const [oneHandSword, setOneHandSword] = useRecoilState(
+    SpecialState.oneHandSwordState
+  );
 
   // 스텟 입력 관리
-  const [level, setLevel] = React.useState(0);
-  const [myClass, setMyClass] = React.useState("");
-  const [hp, setHp] = React.useState(0);
-  const [str, setStr] = React.useState(0);
-  const [dex, setDex] = React.useState(0);
-  const [int, setInt] = React.useState(0);
-  const [luk, setLuk] = React.useState(0);
-  const [noYongsaStat, setNoYongsaStat] = React.useState(0);
-  const [simbolStat, setSimbolStat] = React.useState(0);
-  const [abilityStat, setAbilityStat] = React.useState(0);
-  const [unionStat, setUnionStat] = React.useState(0);
-  const [hyperStat, setHyperStat] = React.useState(0);
+  const [level, setLevel] = useRecoilState(StatState.levelState);
+  const [myClass, setMyClass] = useRecoilState(StatState.myClassState);
+  const [hp, setHp] = useRecoilState(StatState.hpState);
+  const [str, setStr] = useRecoilState(StatState.strState);
+  const [dex, setDex] = useRecoilState(StatState.dexState);
+  const [int, setInt] = useRecoilState(StatState.intState);
+  const [luk, setLuk] = useRecoilState(StatState.lukState);
+  const [noYongsaStat, setNoYongsaStat] = useRecoilState(
+    StatState.noYongsaStatState
+  );
+  const [simbolStat, setSimbolStat] = useRecoilState(StatState.simbolStatState);
+  const [abilityStat, setAbilityStat] = useRecoilState(
+    StatState.abilityStatState
+  );
+  const [unionStat, setUnionStat] = useRecoilState(StatState.unionStatState);
+  const [hyperStat, setHyperStat] = useRecoilState(StatState.hyperStatState);
 
   // 상세스텟 입력 관리
-  const [higherAtk, setHigherAtk] = React.useState(0);
-  const [lowerAtk, setLowerAtk] = React.useState(0);
-  const [dmg, setDmg] = React.useState(0);
-  const [bossDmg, setBossDmg] = React.useState(0);
-  const [buffDuration, setBuffDuration] = React.useState(0);
-  const [ignoreDef, setIgnoreDef] = React.useState(0);
-  const [criticalDmg, setCriticalDmg] = React.useState(0);
-  const [critical, setCritical] = React.useState(0);
-  const [weaponAtk, setWeaponAtk] = React.useState(0);
-  const [atkPercent, setAtkPercent] = React.useState(0);
-  const [mercedesUnion, setMercedesUnion] = React.useState(0);
-  const [wildhunterUnion, setWildhunterUnion] = React.useState(0);
+  const [higherAtk, setHigherAtk] = useRecoilState(DetailState.higherAtkState);
+  const [lowerAtk, setLowerAtk] = useRecoilState(DetailState.lowerAtkState);
+  const [dmg, setDmg] = useRecoilState(DetailState.dmgState);
+  const [bossDmg, setBossDmg] = useRecoilState(DetailState.bossDmgState);
+  const [buffDuration, setBuffDuration] = useRecoilState(
+    DetailState.buffDurationState
+  );
+  const [ignoreDef, setIgnoreDef] = useRecoilState(DetailState.ignoreDefState);
+  const [criticalDmg, setCriticalDmg] = useRecoilState(
+    DetailState.criticalDmgState
+  );
+  const [critical, setCritical] = useRecoilState(DetailState.criticalState);
+  const [weaponAtk, setWeaponAtk] = useRecoilState(DetailState.weaponAtkState);
+  const [atkPercent, setAtkPercent] = useRecoilState(
+    DetailState.atkPercentState
+  );
+  const [mercedesUnion, setMercedesUnion] = useRecoilState(
+    DetailState.mercedesUnionState
+  );
+  const [wildhunterUnion, setWildhunterUnion] = useRecoilState(
+    DetailState.wildhunterUnionState
+  );
 
   // 링크 스킬 관리
-  const [magicianLink, setMagicianLink] = React.useState(0);
-  const [thiefLink, setThiefLink] = React.useState(0);
-  const [kadenaLink, setKadenaLink] = React.useState(0);
-  const [illiumLink, setIlliumLink] = React.useState(0);
-  const [arkLink, setArkLink] = React.useState(0);
-  const [kainLink, setKainLink] = React.useState(0);
+  const [magicianLink, setMagicianLink] = useRecoilState(
+    LinkState.magicianLinkState
+  );
+  const [thiefLink, setThiefLink] = useRecoilState(LinkState.thiefLinkState);
+  const [kadenaLink, setKadenaLink] = useRecoilState(LinkState.kadenaLinkState);
+  const [illiumLink, setIlliumLink] = useRecoilState(LinkState.illiumLinkState);
+  const [arkLink, setArkLink] = useRecoilState(LinkState.arkLinkState);
+  const [kainLink, setKainLink] = useRecoilState(LinkState.kainLinkState);
 
   // 도핑 관리
-  const [noblessBoss, setNoblessBoss] = React.useState(false);
-  const [noblessBossValue, setNoblessBossValue] = React.useState(0);
-  const [noblessDmg, setNoblessDmg] = React.useState(false);
-  const [noblessDmgValue, setNoblessDmgValue] = React.useState(0);
-  const [noblessCriDmg, setNoblessCriDmg] = React.useState(false);
-  const [noblessCriDmgValue, setNoblessCriDmgValue] = React.useState(0);
-  const [noblessIgnore, setNoblessIgnore] = React.useState(false);
-  const [noblessIgnoreValue, setNoblessIgnoreValue] = React.useState(0);
-  const [herosHawl, setHerosHawl] = React.useState(false);
-  const [dopingShiningRed, setDopingShiningRed] = React.useState(false);
-  const [dopingSuperPower, setDopingSuperPower] = React.useState(false);
-  const [dopingExtreme, setDopingExtreme] = React.useState(false);
-  const [dopingGuildBlessing, setDopingGuildBlessing] = React.useState(false);
-  const [dopingUnionsPower, setDopingUnionsPower] = React.useState(false);
-  const [dopingUrus, setDopingUrus] = React.useState(false);
+  const [noblessBoss, setNoblessBoss] = useRecoilState(
+    DopingState.noblessBossState
+  );
+  const [noblessBossValue, setNoblessBossValue] = useRecoilState(
+    DopingState.noblessBossValueState
+  );
+  const [noblessDmg, setNoblessDmg] = useRecoilState(
+    DopingState.noblessDmgState
+  );
+  const [noblessDmgValue, setNoblessDmgValue] = useRecoilState(
+    DopingState.noblessDmgValueState
+  );
+  const [noblessCriDmg, setNoblessCriDmg] = useRecoilState(
+    DopingState.noblessCriDmgState
+  );
+  const [noblessCriDmgValue, setNoblessCriDmgValue] = useRecoilState(
+    DopingState.noblessCriDmgValueState
+  );
+  const [noblessIgnore, setNoblessIgnore] = useRecoilState(
+    DopingState.noblessIgnoreState
+  );
+  const [noblessIgnoreValue, setNoblessIgnoreValue] = useRecoilState(
+    DopingState.noblessIgnoreValueState
+  );
+  const [herosHawl, setHerosHawl] = useRecoilState(DopingState.herosHawlState);
+  const [dopingShiningRed, setDopingShiningRed] = useRecoilState(
+    DopingState.dopingShiningRedState
+  );
+  const [dopingSuperPower, setDopingSuperPower] = useRecoilState(
+    DopingState.dopingSuperPowerState
+  );
+  const [dopingExtreme, setDopingExtreme] = useRecoilState(
+    DopingState.dopingExtremeState
+  );
+  const [dopingGuildBlessing, setDopingGuildBlessing] = useRecoilState(
+    DopingState.dopingGuildBlessingState
+  );
+  const [dopingUnionsPower, setDopingUnionsPower] = useRecoilState(
+    DopingState.dopingUnionsPowerState
+  );
+  const [dopingUrus, setDopingUrus] = useRecoilState(
+    DopingState.dopingUrusState
+  );
 
   // 2비약 선택
-  const [dopingBigHero, setDopingBigHero] = React.useState(false);
-  const [dopingLegendHero, setDopingLegendHero] = React.useState(false);
-  const [dopingJangBi, setDopingJangBi] = React.useState(false);
+  const [dopingBigHero, setDopingBigHero] = useRecoilState(
+    DopingState.dopingBigHeroState
+  );
+  const [dopingLegendHero, setDopingLegendHero] = useRecoilState(
+    DopingState.dopingLegendHeroState
+  );
+  const [dopingJangBi, setDopingJangBi] = useRecoilState(
+    DopingState.dopingJangBiState
+  );
 
   // 뿌리기 선택
-  const [dopingFish, setDopingFish] = React.useState(false);
-  const [dopingRebootAtkPotion, setDopingRebootAtkPotion] =
-    React.useState(false);
-  const [dopingDragonsMeal, setDopingDragonsMeal] = React.useState(false);
+  const [dopingFish, setDopingFish] = useRecoilState(
+    DopingState.dopingFishState
+  );
+  const [dopingRebootAtkPotion, setDopingRebootAtkPotion] = useRecoilState(
+    DopingState.dopingRebootAtkPotionState
+  );
+  const [dopingDragonsMeal, setDopingDragonsMeal] = useRecoilState(
+    DopingState.dopingDragonsMealState
+  );
 
-  const [dopingStatPotion, setDopingStatPotion] = React.useState(false);
-  const [dopingStatPotionValue, setDopingStatPotionValue] = React.useState(0);
+  // 스텟 물약
+  const [dopingStatPotion, setDopingStatPotion] = useRecoilState(
+    DopingState.dopingStatPotionState
+  );
+  const [dopingStatPotionValue, setDopingStatPotionValue] = useRecoilState(
+    DopingState.dopingStatPotionValueState
+  );
 
   // 데이터를 제출하기 위해 정리하는 함수
   function submitData() {
@@ -134,7 +218,9 @@ function InputPage() {
         atkPercent: atkPercent,
         mercedesUnion: mercedesUnion,
         wildhunterUnion: wildhunterUnion,
-        // 어빌리티
+      },
+      // 어빌리티
+      ability: {
         firstAbility: [firstAbility, firstValue],
         secondAbility: [secondAbility, secondValue],
         thirdAbility: [thirdAbility, thirdValue],
@@ -176,6 +262,76 @@ function InputPage() {
     return data;
   }
 
+  // 데이터 초기화 함수
+  function resetData() {
+    setFirstAbility("");
+    setFirstValue("");
+    setSecondAbility("");
+    setSecondValue("");
+    setThirdAbility("");
+    setThirdValue("");
+    setReboot(false);
+    setGenesis(false);
+    setCombat(true);
+    setMugongSoul("");
+    setUseRuinForceShild(false);
+    setEpiSoul("");
+    setOneHandSword(false);
+    setLevel("");
+    setMyClass("");
+    setHp("");
+    setStr("");
+    setDex("");
+    setInt("");
+    setLuk("");
+    setNoYongsaStat("");
+    setSimbolStat("");
+    setAbilityStat("");
+    setUnionStat("");
+    setHyperStat("");
+    setHigherAtk("");
+    setLowerAtk("");
+    setDmg("");
+    setBossDmg("");
+    setBuffDuration("");
+    setIgnoreDef("");
+    setCriticalDmg("");
+    setCritical("");
+    setWeaponAtk("");
+    setAtkPercent("");
+    setMercedesUnion("");
+    setWildhunterUnion("");
+    setMagicianLink("");
+    setThiefLink("");
+    setKadenaLink("");
+    setIlliumLink("");
+    setArkLink("");
+    setKainLink("");
+    setNoblessBoss(false);
+    setNoblessBossValue("");
+    setNoblessDmg(false);
+    setNoblessDmgValue("");
+    setNoblessCriDmg(false);
+    setNoblessCriDmgValue("");
+    setNoblessIgnore(false);
+    setNoblessIgnoreValue("");
+    setHerosHawl(false);
+    setDopingShiningRed(false);
+    setDopingSuperPower(false);
+    setDopingExtreme(false);
+    setDopingGuildBlessing(false);
+    setDopingUnionsPower(false);
+    setDopingUrus(false);
+    setDopingBigHero(false);
+    setDopingLegendHero(false);
+    setDopingJangBi(false);
+    setDopingFish(false);
+    setDopingRebootAtkPotion(false);
+    setDopingDragonsMeal(false);
+    setDopingStatPotion(false);
+    setDopingStatPotionValue("");
+  }
+
   return (
     <div
       style={{
@@ -186,129 +342,22 @@ function InputPage() {
     >
       <StyledContainer>
         <StyledDiv>
-          <CommonInput
-            setReboot={setReboot}
-            reboot={reboot}
-            setGenesis={setGenesis}
-            genesis={genesis}
-            setCombat={setCombat}
-            combat={combat}
-            mugongSoul={mugongSoul}
-            setMugongSoul={setMugongSoul}
-            myClass={myClass}
-            setUseRuinForceShild={setUseRuinForceShild}
-            useRuinForceShild={useRuinForceShild}
-            epiSoul={epiSoul}
-            setEpiSoul={setEpiSoul}
-            setOneHandSword={setOneHandSword}
-            oneHandSword={oneHandSword}
-            setLevel={setLevel}
-            setMyClass={setMyClass}
-            setHp={setHp}
-            setStr={setStr}
-            setDex={setDex}
-            setInt={setInt}
-            setLuk={setLuk}
-            setNoYongsaStat={setNoYongsaStat}
-            setSimbolStat={setSimbolStat}
-            setAbilityStat={setAbilityStat}
-            setUnionStat={setUnionStat}
-            setHyperStat={setHyperStat}
-          />
-          {/* 여기서부터 중앙 페이지 */}
-          <DetailInput
-            setHigherAtk={setHigherAtk}
-            setLowerAtk={setLowerAtk}
-            setDmg={setDmg}
-            setBossDmg={setBossDmg}
-            setBuffDuration={setBuffDuration}
-            setIgnoreDef={setIgnoreDef}
-            setCriticalDmg={setCriticalDmg}
-            setCritical={setCritical}
-            setWeaponAtk={setWeaponAtk}
-            setAtkPercent={setAtkPercent}
-            setMagicianLink={setMagicianLink}
-            setThiefLink={setThiefLink}
-            setKadenaLink={setKadenaLink}
-            setIlliumLink={setIlliumLink}
-            setArkLink={setArkLink}
-            setKainLink={setKainLink}
-            setMercedesUnion={setMercedesUnion}
-            setWildhunterUnion={setWildhunterUnion}
-            secondAbility={secondAbility}
-            thirdAbility={thirdAbility}
-            firstAbility={firstAbility}
-            setFirstAbility={setFirstAbility}
-            firstOption={firstOption}
-            firstValue={firstValue}
-            setFirstValue={setFirstValue}
-            setSecondAbility={setSecondAbility}
-            secondOption={secondOption}
-            secondValue={secondValue}
-            setSecondValue={setSecondValue}
-            setThirdAbility={setThirdAbility}
-            thirdOption={thirdOption}
-            thirdValue={thirdValue}
-            setThirdValue={setThirdValue}
-            setFirstOption={setFirstOption}
-            setSecondOption={setSecondOption}
-            setThirdOption={setThirdOption}
-          />
-          {/* 여기서부터 우측 페이지 */}
-          <DopingInput
-            setNoblessBoss={setNoblessBoss}
-            setNoblessDmg={setNoblessDmg}
-            setNoblessCriDmg={setNoblessCriDmg}
-            setNoblessIgnore={setNoblessIgnore}
-            setHerosHawl={setHerosHawl}
-            setDopingShiningRed={setDopingShiningRed}
-            setDopingBigHero={setDopingBigHero}
-            setDopingSuperPower={setDopingSuperPower}
-            setDopingExtreme={setDopingExtreme}
-            setDopingGuildBlessing={setDopingGuildBlessing}
-            setDopingUnionsPower={setDopingUnionsPower}
-            setDopingUrus={setDopingUrus}
-            setDopingFish={setDopingFish}
-            setDopingStatPotion={setDopingStatPotion}
-            setDopingLegendHero={setDopingLegendHero}
-            setDopingJangBi={setDopingJangBi}
-            setDopingRebootAtkPotion={setDopingRebootAtkPotion}
-            setDopingDragonsMeal={setDopingDragonsMeal}
-            noblessBoss={noblessBoss}
-            noblessDmg={noblessDmg}
-            noblessCriDmg={noblessCriDmg}
-            noblessIgnore={noblessIgnore}
-            herosHawl={herosHawl}
-            setNoblessBossValue={setNoblessBossValue}
-            setNoblessDmgValue={setNoblessDmgValue}
-            setNoblessCriDmgValue={setNoblessCriDmgValue}
-            setNoblessIgnoreValue={setNoblessIgnoreValue}
-            dopingShiningRed={dopingShiningRed}
-            dopingSuperPower={dopingSuperPower}
-            dopingExtreme={dopingExtreme}
-            dopingGuildBlessing={dopingGuildBlessing}
-            dopingUnionsPower={dopingUnionsPower}
-            dopingUrus={dopingUrus}
-            dopingBigHero={dopingBigHero}
-            dopingLegendHero={dopingLegendHero}
-            dopingJangBi={dopingJangBi}
-            dopingFish={dopingFish}
-            dopingRebootAtkPotion={dopingRebootAtkPotion}
-            dopingDragonsMeal={dopingDragonsMeal}
-            dopingStatPotion={dopingStatPotion}
-            setDopingStatPotionValue={setDopingStatPotionValue}
-          />
+          <CommonInput />
+          <DetailInput />
+          <DopingInput />
         </StyledDiv>
         <div>
           <EndButton
             onClick={() => {
               submitData();
+              navigate("/result");
             }}
           >
             제출하기
           </EndButton>
           <EndButton
-            onClick={(e) => {
+            onClick={() => {
+              resetData();
               window.location.reload();
             }}
           >
@@ -349,6 +398,11 @@ const StyledDiv = styled.div`
   padding: 1rem;
   border: 1px solid gray;
   border-radius: 1rem;
+
+  @media (max-width: 1100px) {
+    display: grid;
+    place-items: center;
+  }
 `;
 
 const EndButton = styled.button`

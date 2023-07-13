@@ -1,46 +1,41 @@
 import React from "react";
 import styled from "styled-components";
 import Ability from "./AbilityInput";
+import { DetailState } from "../../Recoil/States/DetailState";
+import { LinkState } from "../../Recoil/States/LinkState";
+import { useRecoilState, useSetRecoilState } from "recoil";
 
-function DetailInput(props: any) {
-  const {
-    setHigherAtk,
-    setLowerAtk,
-    setDmg,
-    setBossDmg,
-    setBuffDuration,
-    setIgnoreDef,
-    setCriticalDmg,
-    setCritical,
-    setWeaponAtk,
-    setAtkPercent,
-    setMagicianLink,
-    setThiefLink,
-    setKadenaLink,
-    setIlliumLink,
-    setArkLink,
-    setKainLink,
-    setMercedesUnion,
-    setWildhunterUnion,
-    secondAbility,
-    thirdAbility,
-    firstAbility,
-    setFirstAbility,
-    firstOption,
-    firstValue,
-    setFirstValue,
-    setSecondAbility,
-    secondOption,
-    secondValue,
-    setSecondValue,
-    setThirdAbility,
-    thirdOption,
-    thirdValue,
-    setThirdValue,
-    setFirstOption,
-    setSecondOption,
-    setThirdOption,
-  } = props;
+function DetailInput() {
+  const [highterAtk, setHigherAtk] = useRecoilState(DetailState.higherAtkState);
+  const [lowerAtk, setLowerAtk] = useRecoilState(DetailState.lowerAtkState);
+  const [dmg, setDmg] = useRecoilState(DetailState.dmgState);
+  const [bossDmg, setBossDmg] = useRecoilState(DetailState.bossDmgState);
+  const [buffDuration, setBuffDuration] = useRecoilState(
+    DetailState.buffDurationState
+  );
+  const [ignoreDef, setIgnoreDef] = useRecoilState(DetailState.ignoreDefState);
+  const [criticalDmg, setCriticalDmg] = useRecoilState(
+    DetailState.criticalDmgState
+  );
+  const [critical, setCritical] = useRecoilState(DetailState.criticalState);
+  const [weaponAtk, setWeaponAtk] = useRecoilState(DetailState.weaponAtkState);
+  const [atkPercent, setAtkPercent] = useRecoilState(
+    DetailState.atkPercentState
+  );
+  const [magicianLink, setMagicianLink] = useRecoilState(
+    LinkState.magicianLinkState
+  );
+  const [thiefLink, setThiefLink] = useRecoilState(LinkState.thiefLinkState);
+  const [kadenaLink, setKadenaLink] = useRecoilState(LinkState.kadenaLinkState);
+  const [illiumLink, setIlliumLink] = useRecoilState(LinkState.illiumLinkState);
+  const [arkLink, setArkLink] = useRecoilState(LinkState.arkLinkState);
+  const [kainLink, setKainLink] = useRecoilState(LinkState.kainLinkState);
+  const [mercedesUnion, setMercedesUnion] = useRecoilState(
+    DetailState.mercedesUnionState
+  );
+  const [wildhunterUnion, setWildhunterUnion] = useRecoilState(
+    DetailState.wildhunterUnionState
+  );
 
   return (
     <StyledStatDetail>
@@ -52,15 +47,17 @@ function DetailInput(props: any) {
             <InputStat
               type="number"
               placeholder="앞스공(낮은 숫자)"
+              defaultValue={highterAtk}
               onChange={(e) => {
-                setHigherAtk(parseInt(e.target.value));
+                setHigherAtk(e.target.value);
               }}
             />
             <InputStat
               type="number"
               placeholder="뒷스공(큰 숫자)"
+              defaultValue={lowerAtk}
               onChange={(e) => {
-                setLowerAtk(parseInt(e.target.value));
+                setLowerAtk(e.target.value);
               }}
             />
           </StyledStatContainer>
@@ -73,8 +70,9 @@ function DetailInput(props: any) {
               min={0}
               placeholder="데미지%"
               title="스텟창에 표기되는 데미지 % 수치"
+              defaultValue={dmg}
               onChange={(e) => {
-                setDmg(parseInt(e.target.value));
+                setDmg(e.target.value);
               }}
             />
           </OtherContainer>
@@ -85,8 +83,9 @@ function DetailInput(props: any) {
               min={0}
               placeholder="보스 데미지%"
               title="스텟창에 표기되는 보스 데미지 % 수치"
+              defaultValue={bossDmg}
               onChange={(e) => {
-                setBossDmg(parseInt(e.target.value));
+                setBossDmg(e.target.value);
               }}
             />
           </OtherContainer>
@@ -115,8 +114,9 @@ function DetailInput(props: any) {
               min={0}
               placeholder="버프 지속시간%"
               title="스텟창에 표기되는 버프 지속시간 % 수치"
+              defaultValue={buffDuration}
               onChange={(e) => {
-                setBuffDuration(parseInt(e.target.value));
+                setBuffDuration(e.target.value);
               }}
             />
           </OtherContainer>
@@ -129,8 +129,9 @@ function DetailInput(props: any) {
               min={0}
               placeholder="방무%"
               title="스텟창에 표기되는 방어율 무시 % 수치"
+              defaultValue={ignoreDef}
               onChange={(e) => {
-                setIgnoreDef(parseInt(e.target.value));
+                setIgnoreDef(e.target.value);
               }}
             />
           </OtherContainer>
@@ -141,8 +142,9 @@ function DetailInput(props: any) {
               min={0}
               placeholder="크뎀%"
               title="스텟창에 표기되는 크리티컬 데미지 % 수치"
+              defaultValue={criticalDmg}
               onChange={(e) => {
-                setCriticalDmg(parseInt(e.target.value));
+                setCriticalDmg(e.target.value);
               }}
             />
           </OtherContainer>
@@ -156,8 +158,9 @@ function DetailInput(props: any) {
               max={100}
               placeholder="쓸샾포함 크확"
               title="크리티컬 확률(궁수는 반드시 제출)"
+              defaultValue={critical}
               onChange={(e) => {
-                setCritical(parseInt(e.target.value));
+                setCritical(e.target.value);
               }}
             />
           </OtherContainer>
@@ -168,8 +171,9 @@ function DetailInput(props: any) {
               min={0}
               placeholder="무기 총 공격력"
               title="장착한 무기의 총 공격력 or 마력 수치"
+              defaultValue={weaponAtk}
               onChange={(e) => {
-                setWeaponAtk(parseInt(e.target.value));
+                setWeaponAtk(e.target.value);
               }}
             />
           </OtherContainer>
@@ -182,8 +186,9 @@ function DetailInput(props: any) {
               min={0}
               placeholder="총 공격력%"
               title="장비 공격력% or 마력% 합계, 소울웨폰 수치도 반드시 합산"
+              defaultValue={atkPercent}
               onChange={(e) => {
-                setAtkPercent(parseInt(e.target.value));
+                setAtkPercent(e.target.value);
               }}
             />
           </OtherContainer>
@@ -199,8 +204,9 @@ function DetailInput(props: any) {
                 max={6}
                 placeholder="링크Lv"
                 title="모험가 법사 링크"
+                defaultValue={magicianLink}
                 onChange={(e) => {
-                  setMagicianLink(parseInt(e.target.value));
+                  setMagicianLink(e.target.value);
                 }}
               />
             </OtherContainer>
@@ -214,9 +220,10 @@ function DetailInput(props: any) {
                 min={0}
                 max={6}
                 placeholder="링크Lv"
-                title="모험가 법사 링크"
+                title="모험가 도적 링크"
+                defaultValue={thiefLink}
                 onChange={(e) => {
-                  setThiefLink(parseInt(e.target.value));
+                  setThiefLink(e.target.value);
                 }}
               />
             </OtherContainer>
@@ -235,8 +242,9 @@ function DetailInput(props: any) {
                 max={2}
                 placeholder="링크Lv"
                 title="카데나 링크"
+                defaultValue={kadenaLink}
                 onChange={(e) => {
-                  setKadenaLink(parseInt(e.target.value));
+                  setKadenaLink(e.target.value);
                 }}
               />
             </OtherContainer>
@@ -251,8 +259,9 @@ function DetailInput(props: any) {
                 max={6}
                 placeholder="링크Lv"
                 title="일리움 링크"
+                defaultValue={illiumLink}
                 onChange={(e) => {
-                  setIlliumLink(parseInt(e.target.value));
+                  setIlliumLink(e.target.value);
                 }}
               />
             </OtherContainer>
@@ -269,8 +278,9 @@ function DetailInput(props: any) {
                 max={6}
                 placeholder="링크Lv"
                 title="아크 링크"
+                defaultValue={arkLink}
                 onChange={(e) => {
-                  setArkLink(parseInt(e.target.value));
+                  setArkLink(e.target.value);
                 }}
               />
             </OtherContainer>
@@ -285,8 +295,9 @@ function DetailInput(props: any) {
                 max={6}
                 placeholder="링크Lv"
                 title="카인 링크"
+                defaultValue={kainLink}
                 onChange={(e) => {
-                  setKainLink(parseInt(e.target.value));
+                  setKainLink(e.target.value);
                 }}
               />
             </OtherContainer>
@@ -300,8 +311,9 @@ function DetailInput(props: any) {
               min={1}
               placeholder="메르 유니온 레벨"
               title="유니온에 배치한 메르세데스 캐릭터 레벨"
+              defaultValue={mercedesUnion}
               onChange={(e) => {
-                setMercedesUnion(parseInt(e.target.value));
+                setMercedesUnion(e.target.value);
               }}
             />
           </OtherContainer>
@@ -312,34 +324,16 @@ function DetailInput(props: any) {
               min={1}
               placeholder="와헌 유니온 레벨"
               title="유니온에 배치한 와일드헌터 캐릭터 레벨"
+              defaultValue={wildhunterUnion}
               onChange={(e) => {
-                setWildhunterUnion(parseInt(e.target.value));
+                setWildhunterUnion(e.target.value);
               }}
             />
           </OtherContainer>
         </OtherContainerBox>
 
         {/* 어빌리티 */}
-        <Ability
-          secondAbility={secondAbility}
-          thirdAbility={thirdAbility}
-          firstAbility={firstAbility}
-          setFirstAbility={setFirstAbility}
-          firstOption={firstOption}
-          firstValue={firstValue}
-          setFirstValue={setFirstValue}
-          setSecondAbility={setSecondAbility}
-          secondOption={secondOption}
-          secondValue={secondValue}
-          setSecondValue={setSecondValue}
-          setThirdAbility={setThirdAbility}
-          thirdOption={thirdOption}
-          thirdValue={thirdValue}
-          setThirdValue={setThirdValue}
-          setFirstOption={setFirstOption}
-          setSecondOption={setSecondOption}
-          setThirdOption={setThirdOption}
-        />
+        <Ability />
       </div>
     </StyledStatDetail>
   );
@@ -457,20 +451,4 @@ const InputSmallBox = styled.input`
     font-size: 11px;
     /* font-style: italic; */
   }
-`;
-
-// 어빌리티 타이틀
-const StyledAbilityTitle = styled.div`
-  background: linear-gradient(to top, rgb(204, 221, 136), rgb(136, 187, 34));
-  color: white;
-  text-shadow: -1px -1px 0 rgb(85, 136, 17), 1px -1px 0 rgb(85, 136, 17),
-    -1px 1px 0 rgb(85, 136, 17), 1px 1px 0 rgb(85, 136, 17);
-  height: 4rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-radius: 1rem;
-  padding-left: 1rem;
-  margin-top: 0.8rem;
-  padding-right: 1rem;
 `;

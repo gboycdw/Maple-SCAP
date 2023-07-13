@@ -1,50 +1,76 @@
 import React from "react";
 import styled from "styled-components";
+import { DopingState } from "../../Recoil/States/DopingState";
+import { useRecoilState, useSetRecoilState } from "recoil";
 
-function DopingInput(props: any) {
-  const {
-    setNoblessBoss,
-    setNoblessDmg,
-    setNoblessCriDmg,
-    setNoblessIgnore,
-    setHerosHawl,
-    setDopingShiningRed,
-    setDopingBigHero,
-    setDopingSuperPower,
-    setDopingExtreme,
-    setDopingGuildBlessing,
-    setDopingUnionsPower,
-    setDopingUrus,
-    setDopingFish,
-    setDopingStatPotion,
-    setDopingLegendHero,
-    setDopingJangBi,
-    setDopingRebootAtkPotion,
-    setDopingDragonsMeal,
-    noblessBoss,
-    noblessDmg,
-    noblessCriDmg,
-    noblessIgnore,
-    herosHawl,
-    setNoblessBossValue,
-    setNoblessDmgValue,
-    setNoblessCriDmgValue,
-    setNoblessIgnoreValue,
-    dopingShiningRed,
-    dopingSuperPower,
-    dopingExtreme,
-    dopingGuildBlessing,
-    dopingUnionsPower,
-    dopingUrus,
-    dopingBigHero,
-    dopingLegendHero,
-    dopingJangBi,
-    dopingFish,
-    dopingRebootAtkPotion,
-    dopingDragonsMeal,
-    dopingStatPotion,
-    setDopingStatPotionValue,
-  } = props;
+function DopingInput() {
+  const [noblessBoss, setNoblessBoss] = useRecoilState(
+    DopingState.noblessBossState
+  );
+  const setNoblessBossValue = useSetRecoilState(
+    DopingState.noblessBossValueState
+  );
+  const [noblessDmg, setNoblessDmg] = useRecoilState(
+    DopingState.noblessDmgState
+  );
+  const setNoblessDmgValue = useSetRecoilState(
+    DopingState.noblessDmgValueState
+  );
+  const [noblessCriDmg, setNoblessCriDmg] = useRecoilState(
+    DopingState.noblessCriDmgState
+  );
+  const setNoblessCriDmgValue = useSetRecoilState(
+    DopingState.noblessCriDmgValueState
+  );
+  const [noblessIgnore, setNoblessIgnore] = useRecoilState(
+    DopingState.noblessIgnoreState
+  );
+  const setNoblessIgnoreValue = useSetRecoilState(
+    DopingState.noblessIgnoreValueState
+  );
+  const [herosHawl, setHerosHawl] = useRecoilState(DopingState.herosHawlState);
+  const [dopingShiningRed, setDopingShiningRed] = useRecoilState(
+    DopingState.dopingShiningRedState
+  );
+  const [dopingSuperPower, setDopingSuperPower] = useRecoilState(
+    DopingState.dopingSuperPowerState
+  );
+  const [dopingExtreme, setDopingExtreme] = useRecoilState(
+    DopingState.dopingExtremeState
+  );
+  const [dopingGuildBlessing, setDopingGuildBlessing] = useRecoilState(
+    DopingState.dopingGuildBlessingState
+  );
+  const [dopingUnionsPower, setDopingUnionsPower] = useRecoilState(
+    DopingState.dopingUnionsPowerState
+  );
+  const [dopingUrus, setDopingUrus] = useRecoilState(
+    DopingState.dopingUrusState
+  );
+  const [dopingBigHero, setDopingBigHero] = useRecoilState(
+    DopingState.dopingBigHeroState
+  );
+  const [dopingLegendHero, setDopingLegendHero] = useRecoilState(
+    DopingState.dopingLegendHeroState
+  );
+  const [dopingJangBi, setDopingJangBi] = useRecoilState(
+    DopingState.dopingJangBiState
+  );
+  const [dopingFish, setDopingFish] = useRecoilState(
+    DopingState.dopingFishState
+  );
+  const [dopingRebootAtkPotion, setDopingRebootAtkPotion] = useRecoilState(
+    DopingState.dopingRebootAtkPotionState
+  );
+  const [dopingDragonsMeal, setDopingDragonsMeal] = useRecoilState(
+    DopingState.dopingDragonsMealState
+  );
+  const [dopingStatPotion, setDopingStatPotion] = useRecoilState(
+    DopingState.dopingStatPotionState
+  );
+  const setDopingStatPotionValue = useSetRecoilState(
+    DopingState.dopingStatPotionValueState
+  );
 
   return (
     <StyledStatDetail style={{ width: "46.5rem" }}>
@@ -142,7 +168,7 @@ function DopingInput(props: any) {
                   } else {
                     value = parseInt(e.target.value);
                   }
-                  setNoblessBossValue(value);
+                  setNoblessBossValue(value.toString());
                 }}
               />
             </div>
@@ -177,7 +203,7 @@ function DopingInput(props: any) {
                   } else {
                     value = parseInt(e.target.value);
                   }
-                  setNoblessDmgValue(value);
+                  setNoblessDmgValue(value.toString());
                 }}
               />
             </div>
@@ -215,7 +241,7 @@ function DopingInput(props: any) {
                   } else {
                     value = parseInt(e.target.value);
                   }
-                  setNoblessCriDmgValue(value);
+                  setNoblessCriDmgValue(value.toString());
                 }}
               />
             </div>
@@ -253,7 +279,7 @@ function DopingInput(props: any) {
                   } else {
                     value = parseInt(e.target.value);
                   }
-                  setNoblessIgnoreValue(value);
+                  setNoblessIgnoreValue(value.toString());
                 }}
               />
             </div>
@@ -483,7 +509,7 @@ function DopingInput(props: any) {
                 } else {
                   value = parseInt(e.target.value);
                 }
-                setDopingStatPotionValue(value);
+                setDopingStatPotionValue(value.toString());
               }}
             />
           </OtherContainer>

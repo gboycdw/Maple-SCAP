@@ -38,9 +38,9 @@ const FilteringOptions = {
     ],
   },
   numbers: {
-    reset_Legendary: ["15", "16", "17", "18", "19", "20"],
-    reset_Unique: ["5", "6", "7", "8", "9", "10"],
-    debuffBonusDamage: ["4", "5", "6", "7", "8"],
+    reset_Legendary: ["-", "15", "16", "17", "18", "19", "20"],
+    reset_Unique: ["-", "5", "6", "7", "8", "9", "10"],
+    debuffBonusDamage: ["-", "4", "5", "6", "7", "8"],
     // buffMaintain_Legendary: [
     //   { value: "option1", label: 44 },
     //   { value: "option2", label: 45 },
