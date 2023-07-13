@@ -1,17 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
 import CommonInput from "../../Components/InputPage/CommonInput";
 import DetailInput from "../../Components/InputPage/DetailInput";
 import DopingInput from "../../Components/InputPage/DopingInput";
-import { AbilityState } from "../../Recoil/States/AbilityState";
-import { SpecialState } from "../../Recoil/States/SpecialState";
-import { StatState } from "../../Recoil/States/StatState";
-import { DetailState } from "../../Recoil/States/DetailState";
-import { LinkState } from "../../Recoil/States/LinkState";
-import { DopingState } from "../../Recoil/States/DopingState";
 import { useRecoilState } from "recoil";
+import {
+  AbilityState,
+  SpecialState,
+  StatState,
+  DetailState,
+  LinkState,
+  DopingState,
+} from "../../Recoil/State";
 
 function InputPage() {
   const navigate = useNavigate();
