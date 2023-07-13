@@ -1,36 +1,37 @@
 import React from "react";
 import styled from "styled-components";
+import { SpecialState } from "../../Recoil/States/SpecialState";
+import { StatState } from "../../Recoil/States/StatState";
+import { useRecoilState, useSetRecoilState } from "recoil";
 
-function CommonInput(props: any) {
-  const {
-    setReboot,
-    reboot,
-    setGenesis,
-    genesis,
-    setCombat,
-    combat,
-    mugongSoul,
-    setMugongSoul,
-    myClass,
-    setUseRuinForceShild,
-    useRuinForceShild,
-    epiSoul,
-    setEpiSoul,
-    setOneHandSword,
-    oneHandSword,
-    setLevel,
-    setMyClass,
-    setHp,
-    setStr,
-    setDex,
-    setInt,
-    setLuk,
-    setNoYongsaStat,
-    setSimbolStat,
-    setAbilityStat,
-    setUnionStat,
-    setHyperStat,
-  } = props;
+function CommonInput() {
+  const [reboot, setReboot] = useRecoilState(SpecialState.rebootState);
+  const [genesis, setGenesis] = useRecoilState(SpecialState.genesisState);
+  const [combat, setCombat] = useRecoilState(SpecialState.combatState);
+  const [mugongSoul, setMugongSoul] = useRecoilState(
+    SpecialState.mugongSoulState
+  );
+  const [useRuinForceShild, setUseRuinForceShild] = useRecoilState(
+    SpecialState.useRuinForceShildState
+  );
+  const [epiSoul, setEpiSoul] = useRecoilState(SpecialState.epiSoulState);
+  const [oneHandSword, setOneHandSword] = useRecoilState(
+    SpecialState.oneHandSwordState
+  );
+
+  // 스텟 입력 관리
+  const setLevel = useSetRecoilState(StatState.levelState);
+  const [myClass, setMyClass] = useRecoilState(StatState.myClassState);
+  const setHp = useSetRecoilState(StatState.hpState);
+  const setStr = useSetRecoilState(StatState.strState);
+  const setDex = useSetRecoilState(StatState.dexState);
+  const setInt = useSetRecoilState(StatState.intState);
+  const setLuk = useSetRecoilState(StatState.lukState);
+  const setNoYongsaStat = useSetRecoilState(StatState.noYongsaStatState);
+  const setSimbolStat = useSetRecoilState(StatState.simbolStatState);
+  const setAbilityStat = useSetRecoilState(StatState.abilityStatState);
+  const setUnionStat = useSetRecoilState(StatState.unionStatState);
+  const setHyperStat = useSetRecoilState(StatState.hyperStatState);
 
   return (
     <>

@@ -1,46 +1,31 @@
 import React from "react";
 import styled from "styled-components";
 import Ability from "./AbilityInput";
+import { DetailState } from "../../Recoil/States/DetailState";
+import { LinkState } from "../../Recoil/States/LinkState";
+import { useRecoilState, useSetRecoilState } from "recoil";
 
-function DetailInput(props: any) {
-  const {
-    setHigherAtk,
-    setLowerAtk,
-    setDmg,
-    setBossDmg,
-    setBuffDuration,
-    setIgnoreDef,
-    setCriticalDmg,
-    setCritical,
-    setWeaponAtk,
-    setAtkPercent,
-    setMagicianLink,
-    setThiefLink,
-    setKadenaLink,
-    setIlliumLink,
-    setArkLink,
-    setKainLink,
-    setMercedesUnion,
-    setWildhunterUnion,
-    secondAbility,
-    thirdAbility,
-    firstAbility,
-    setFirstAbility,
-    firstOption,
-    firstValue,
-    setFirstValue,
-    setSecondAbility,
-    secondOption,
-    secondValue,
-    setSecondValue,
-    setThirdAbility,
-    thirdOption,
-    thirdValue,
-    setThirdValue,
-    setFirstOption,
-    setSecondOption,
-    setThirdOption,
-  } = props;
+function DetailInput() {
+  const setHigherAtk = useSetRecoilState(DetailState.higherAtkState);
+  const setLowerAtk = useSetRecoilState(DetailState.lowerAtkState);
+  const setDmg = useSetRecoilState(DetailState.dmgState);
+  const setBossDmg = useSetRecoilState(DetailState.bossDmgState);
+  const setBuffDuration = useSetRecoilState(DetailState.buffDurationState);
+  const setIgnoreDef = useSetRecoilState(DetailState.ignoreDefState);
+  const setCriticalDmg = useSetRecoilState(DetailState.criticalDmgState);
+  const setCritical = useSetRecoilState(DetailState.criticalState);
+  const setWeaponAtk = useSetRecoilState(DetailState.weaponAtkState);
+  const setAtkPercent = useSetRecoilState(DetailState.atkPercentState);
+  const setMagicianLink = useSetRecoilState(LinkState.magicianLinkState);
+  const setThiefLink = useSetRecoilState(LinkState.thiefLinkState);
+  const setKadenaLink = useSetRecoilState(LinkState.kadenaLinkState);
+  const setIlliumLink = useSetRecoilState(LinkState.illiumLinkState);
+  const setArkLink = useSetRecoilState(LinkState.arkLinkState);
+  const setKainLink = useSetRecoilState(LinkState.kainLinkState);
+  const setMercedesUnion = useSetRecoilState(DetailState.mercedesUnionState);
+  const setWildhunterUnion = useSetRecoilState(
+    DetailState.wildhunterUnionState
+  );
 
   return (
     <StyledStatDetail>
@@ -320,26 +305,7 @@ function DetailInput(props: any) {
         </OtherContainerBox>
 
         {/* 어빌리티 */}
-        <Ability
-          secondAbility={secondAbility}
-          thirdAbility={thirdAbility}
-          firstAbility={firstAbility}
-          setFirstAbility={setFirstAbility}
-          firstOption={firstOption}
-          firstValue={firstValue}
-          setFirstValue={setFirstValue}
-          setSecondAbility={setSecondAbility}
-          secondOption={secondOption}
-          secondValue={secondValue}
-          setSecondValue={setSecondValue}
-          setThirdAbility={setThirdAbility}
-          thirdOption={thirdOption}
-          thirdValue={thirdValue}
-          setThirdValue={setThirdValue}
-          setFirstOption={setFirstOption}
-          setSecondOption={setSecondOption}
-          setThirdOption={setThirdOption}
-        />
+        <Ability />
       </div>
     </StyledStatDetail>
   );
