@@ -1,64 +1,79 @@
 import React from "react";
 import { atom, atomFamily } from "recoil";
+import { recoilPersist } from "recoil-persist";
+
+const { persistAtom } = recoilPersist();
 // 상세스텟 입력 관리
-export const higherAtkState = atom<number>({
+export const higherAtkState = atom<string>({
   key: "higherAtk",
-  default: 0,
+  default: "",
+  effects_UNSTABLE: [persistAtom],
 });
 
-export const lowerAtkState = atom<number>({
+export const lowerAtkState = atom<string>({
   key: "lowerAtk",
-  default: 0,
+  default: "",
+  effects_UNSTABLE: [persistAtom],
 });
 
-export const dmgState = atom<number>({
+export const dmgState = atom<string>({
   key: "dmg",
-  default: 0,
+  default: "",
+  effects_UNSTABLE: [persistAtom],
 });
 
-export const bossDmgState = atom<number>({
+export const bossDmgState = atom<string>({
   key: "bossDmg",
-  default: 0,
+  default: "",
+  effects_UNSTABLE: [persistAtom],
 });
 
-export const buffDurationState = atom<number>({
+export const buffDurationState = atom<string>({
   key: "buffDuration",
-  default: 0,
+  default: "",
+  effects_UNSTABLE: [persistAtom],
 });
 
-export const ignoreDefState = atom<number>({
+export const ignoreDefState = atom<string>({
   key: "ignoreDef",
-  default: 0,
+  default: "",
+  effects_UNSTABLE: [persistAtom],
 });
 
-export const criticalDmgState = atom<number>({
+export const criticalDmgState = atom<string>({
   key: "criticalDmg",
-  default: 0,
+  default: "",
+  effects_UNSTABLE: [persistAtom],
 });
 
-export const criticalState = atom<number>({
+export const criticalState = atom<string>({
   key: "critical",
-  default: 0,
+  default: "",
+  effects_UNSTABLE: [persistAtom],
 });
 
-export const weaponAtkState = atom<number>({
+export const weaponAtkState = atom<string>({
   key: "weaponAtk",
-  default: 0,
+  default: "",
+  effects_UNSTABLE: [persistAtom],
 });
 
-export const atkPercentState = atom<number>({
+export const atkPercentState = atom<string>({
   key: "atkPercent",
-  default: 0,
+  default: "",
+  effects_UNSTABLE: [persistAtom],
 });
 
-export const mercedesUnionState = atom<number>({
+export const mercedesUnionState = atom<string>({
   key: "mercedesUnion",
-  default: 0,
+  default: "",
+  effects_UNSTABLE: [persistAtom],
 });
 
-export const wildhunterUnionState = atom<number>({
+export const wildhunterUnionState = atom<string>({
   key: "wildhunterUnion",
-  default: 0,
+  default: "",
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const DetailState = {

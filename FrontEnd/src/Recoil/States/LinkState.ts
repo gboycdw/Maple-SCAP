@@ -1,35 +1,44 @@
 import React from "react";
 import { atom, atomFamily } from "recoil";
+import { recoilPersist } from "recoil-persist";
+
+const { persistAtom } = recoilPersist();
 
 // 링크 스킬 관리
-export const magicianLinkState = atom<number>({
+export const magicianLinkState = atom<string>({
   key: "magicianLink",
-  default: 0,
+  default: "",
+  effects_UNSTABLE: [persistAtom],
 });
 
-export const thiefLinkState = atom<number>({
+export const thiefLinkState = atom<string>({
   key: "thiefLink",
-  default: 0,
+  default: "",
+  effects_UNSTABLE: [persistAtom],
 });
 
-export const kadenaLinkState = atom<number>({
+export const kadenaLinkState = atom<string>({
   key: "kadenaLink",
-  default: 0,
+  default: "",
+  effects_UNSTABLE: [persistAtom],
 });
 
-export const illiumLinkState = atom<number>({
+export const illiumLinkState = atom<string>({
   key: "illiumLink",
-  default: 0,
+  default: "",
+  effects_UNSTABLE: [persistAtom],
 });
 
-export const arkLinkState = atom<number>({
+export const arkLinkState = atom<string>({
   key: "arkLink",
-  default: 0,
+  default: "",
+  effects_UNSTABLE: [persistAtom],
 });
 
-export const kainLinkState = atom<number>({
+export const kainLinkState = atom<string>({
   key: "kainLink",
-  default: 0,
+  default: "",
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const LinkState = {

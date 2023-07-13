@@ -1,64 +1,79 @@
 import React from "react";
 import { atom, atomFamily } from "recoil";
+import { recoilPersist } from "recoil-persist";
+
+const { persistAtom } = recoilPersist();
 // 스텟 입력 관리
-export const levelState = atom<number>({
+export const levelState = atom<string>({
   key: "level",
-  default: 0,
+  default: "",
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const myClassState = atom<string>({
   key: "myClass",
   default: "",
+  effects_UNSTABLE: [persistAtom],
 });
 
-export const hpState = atom<number>({
+export const hpState = atom<string>({
   key: "hp",
-  default: 0,
+  default: "",
+  effects_UNSTABLE: [persistAtom],
 });
 
-export const strState = atom<number>({
+export const strState = atom<string>({
   key: "str",
-  default: 0,
+  default: "",
+  effects_UNSTABLE: [persistAtom],
 });
 
-export const dexState = atom<number>({
+export const dexState = atom<string>({
   key: "dex",
-  default: 0,
+  default: "",
+  effects_UNSTABLE: [persistAtom],
 });
 
-export const intState = atom<number>({
+export const intState = atom<string>({
   key: "int",
-  default: 0,
+  default: "",
+  effects_UNSTABLE: [persistAtom],
 });
 
-export const lukState = atom<number>({
+export const lukState = atom<string>({
   key: "luk",
-  default: 0,
+  default: "",
+  effects_UNSTABLE: [persistAtom],
 });
 
-export const noYongsaStatState = atom<number>({
+export const noYongsaStatState = atom<string>({
   key: "noYongsaStat",
-  default: 0,
+  default: "",
+  effects_UNSTABLE: [persistAtom],
 });
 
-export const simbolStatState = atom<number>({
+export const simbolStatState = atom<string>({
   key: "simbolStat",
-  default: 0,
+  default: "",
+  effects_UNSTABLE: [persistAtom],
 });
 
-export const abilityStatState = atom<number>({
+export const abilityStatState = atom<string>({
   key: "abilityStat",
-  default: 0,
+  default: "",
+  effects_UNSTABLE: [persistAtom],
 });
 
-export const unionStatState = atom<number>({
+export const unionStatState = atom<string>({
   key: "unionStat",
-  default: 0,
+  default: "",
+  effects_UNSTABLE: [persistAtom],
 });
 
-export const hyperStatState = atom<number>({
+export const hyperStatState = atom<string>({
   key: "hyperStat",
-  default: 0,
+  default: "",
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const StatState = {
