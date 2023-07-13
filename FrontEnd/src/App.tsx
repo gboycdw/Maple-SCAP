@@ -4,14 +4,8 @@ import "./App.css";
 import InputPage from "./Pages/InputPage/InputPage";
 import MainPage from "./Pages/MainPage/MainPage";
 import ImageUploadPage from "./Pages/InputPage/ImageUploadPage";
-import ResultPage from "./Pages/ResultPage/ResultPage";
-import {
-  RecoilRoot,
-  atom,
-  selector,
-  useRecoilState,
-  useRecoilValue,
-} from "recoil";
+import ResultPage from "./Pages/DetailPage/DetailPage";
+import { RecoilRoot } from "recoil";
 
 function App() {
   return (
