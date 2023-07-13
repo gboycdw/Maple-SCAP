@@ -20,18 +20,22 @@ function CommonInput() {
   );
 
   // 스텟 입력 관리
-  const setLevel = useSetRecoilState(StatState.levelState);
+  const [level, setLevel] = useRecoilState(StatState.levelState);
   const [myClass, setMyClass] = useRecoilState(StatState.myClassState);
-  const setHp = useSetRecoilState(StatState.hpState);
-  const setStr = useSetRecoilState(StatState.strState);
-  const setDex = useSetRecoilState(StatState.dexState);
-  const setInt = useSetRecoilState(StatState.intState);
-  const setLuk = useSetRecoilState(StatState.lukState);
-  const setNoYongsaStat = useSetRecoilState(StatState.noYongsaStatState);
-  const setSimbolStat = useSetRecoilState(StatState.simbolStatState);
-  const setAbilityStat = useSetRecoilState(StatState.abilityStatState);
-  const setUnionStat = useSetRecoilState(StatState.unionStatState);
-  const setHyperStat = useSetRecoilState(StatState.hyperStatState);
+  const [hp, setHp] = useRecoilState(StatState.hpState);
+  const [str, setStr] = useRecoilState(StatState.strState);
+  const [dex, setDex] = useRecoilState(StatState.dexState);
+  const [int, setInt] = useRecoilState(StatState.intState);
+  const [luk, setLuk] = useRecoilState(StatState.lukState);
+  const [noYongsaStat, setNoYongsaStat] = useRecoilState(
+    StatState.noYongsaStatState
+  );
+  const [simbolStat, setSimbolStat] = useRecoilState(StatState.simbolStatState);
+  const [abilityStat, setAbilityStat] = useRecoilState(
+    StatState.abilityStatState
+  );
+  const [unionStat, setUnionStat] = useRecoilState(StatState.unionStatState);
+  const [hyperStat, setHyperStat] = useRecoilState(StatState.hyperStatState);
 
   return (
     <>
@@ -101,20 +105,20 @@ function CommonInput() {
                 </StyledBuffButton>
                 <StyledBuffButton
                   onClick={() => {
-                    if (mugongSoul <= 1) {
+                    if (parseInt(mugongSoul) <= 1) {
                       setMugongSoul(mugongSoul + 1);
-                    } else if (mugongSoul === 2) {
-                      setMugongSoul(0);
+                    } else if (parseInt(mugongSoul) === 2) {
+                      setMugongSoul("");
                     }
                   }}
                 >
-                  {mugongSoul === 0 ? (
+                  {mugongSoul === "" ? (
                     <SelectedImg
                       src="./images/soul_mugong_no.png"
                       alt="무공소울X"
                       title="무공소울X"
                     />
-                  ) : mugongSoul === 1 ? (
+                  ) : parseInt(mugongSoul) === 1 ? (
                     <SelectedImg
                       src="./images/soul_mugong.png"
                       alt="무공1렙"
@@ -162,20 +166,20 @@ function CommonInput() {
                 {myClass === "데몬어벤져" ? (
                   <StyledBuffButton
                     onClick={() => {
-                      if (epiSoul <= 1) {
-                        setEpiSoul(epiSoul + 1);
-                      } else if (epiSoul === 2) {
-                        setEpiSoul(0);
+                      if (parseInt(epiSoul) <= 1) {
+                        setEpiSoul((parseInt(epiSoul) + 1).toString());
+                      } else if (parseInt(epiSoul) === 2) {
+                        setEpiSoul("");
                       }
                     }}
                   >
-                    {epiSoul === 0 ? (
+                    {epiSoul === "" ? (
                       <SelectedImg
                         src="./images/soul_epi_no.png"
                         alt="에피X"
                         title="에피네아 소울 미사용"
                       />
-                    ) : epiSoul === 1 ? (
+                    ) : parseInt(epiSoul) === 1 ? (
                       <SelectedImg
                         src="./images/soul_epi.png"
                         alt="에피1렙"
@@ -236,12 +240,12 @@ function CommonInput() {
                 레벨
               </StyledSmallTitle>
               <InputStat
-                type="number"
-                min={1}
+                type="string"
                 placeholder="레벨"
                 title="현재 레벨"
+                defaultValue={level}
                 onChange={(e) => {
-                  setLevel(parseInt(e.target.value));
+                  setLevel(e.target.value);
                 }}
               />
             </OtherContainer>
@@ -255,6 +259,7 @@ function CommonInput() {
                 type="string"
                 placeholder="직업"
                 title="정확하게 입력 안 하면 인식 못함."
+                defaultValue={myClass}
                 onChange={(e) => {
                   setMyClass(e.target.value);
                 }}
@@ -271,8 +276,9 @@ function CommonInput() {
                 min={1}
                 placeholder="총 HP 수치"
                 title="데몬어벤져는 반드시 총 HP를 입력할 것"
+                defaultValue={hp}
                 onChange={(e) => {
-                  setHp(parseInt(e.target.value));
+                  setHp(e.target.value);
                 }}
               />
             </OtherContainer>
@@ -287,8 +293,9 @@ function CommonInput() {
                 min={1}
                 placeholder="힘 수치"
                 title="메용 포함 수치, 선택한 컴뱃 적용 유무와 일치하는 지 확인할 것"
+                defaultValue={str}
                 onChange={(e) => {
-                  setStr(parseInt(e.target.value));
+                  setStr(e.target.value);
                 }}
               />
             </OtherContainer>
@@ -303,8 +310,9 @@ function CommonInput() {
                 min={1}
                 placeholder="민첩 수치"
                 title="메용 포함 수치, 선택한 컴뱃 적용 유무와 일치하는 지 확인할 것"
+                defaultValue={dex}
                 onChange={(e) => {
-                  setDex(parseInt(e.target.value));
+                  setDex(e.target.value);
                 }}
               />
             </OtherContainer>
@@ -319,8 +327,9 @@ function CommonInput() {
                 min={1}
                 placeholder="지능 수치"
                 title="메용 포함 수치, 선택한 컴뱃 적용 유무와 일치하는 지 확인할 것"
+                defaultValue={int}
                 onChange={(e) => {
-                  setInt(parseInt(e.target.value));
+                  setInt(e.target.value);
                 }}
               />
             </OtherContainer>
@@ -335,8 +344,9 @@ function CommonInput() {
                 min={1}
                 placeholder="행운 수치"
                 title="메용 포함 수치, 선택한 컴뱃 적용 유무와 일치하는 지 확인할 것"
+                defaultValue={luk}
                 onChange={(e) => {
-                  setLuk(parseInt(e.target.value));
+                  setLuk(e.target.value);
                 }}
               />
             </OtherContainer>
@@ -351,8 +361,9 @@ function CommonInput() {
                 min={1}
                 placeholder="메이플 용사를 끈 상태의 주스텟"
                 title="메용 off 주스텟, 선택한 컴뱃 적용 유무와 일치하는 지 확인할 것"
+                defaultValue={noYongsaStat}
                 onChange={(e) => {
-                  setNoYongsaStat(parseInt(e.target.value));
+                  setNoYongsaStat(e.target.value);
                 }}
               />
             </OtherContainer>
@@ -367,8 +378,9 @@ function CommonInput() {
                 min={0}
                 placeholder="아케인심볼 + 어센틱심볼로 증가한 주스텟"
                 title="스텟 증가량만 합산하여 입력"
+                defaultValue={simbolStat}
                 onChange={(e) => {
-                  setSimbolStat(parseInt(e.target.value));
+                  setSimbolStat(e.target.value);
                 }}
               />
             </OtherContainer>
@@ -383,8 +395,9 @@ function CommonInput() {
                 min={1}
                 placeholder="어빌리티로 증가한 주스텟"
                 title="어빌리티로 오른 주스텟을 입력"
+                defaultValue={abilityStat}
                 onChange={(e) => {
-                  setAbilityStat(parseInt(e.target.value));
+                  setAbilityStat(e.target.value);
                 }}
               />
             </OtherContainer>
@@ -399,8 +412,9 @@ function CommonInput() {
                 min={1}
                 placeholder="유니온 공격대 배치로 증가한 주스텟"
                 title="유니온 배치로 증가한 주스텟 수치를 더해서 입력"
+                defaultValue={unionStat}
                 onChange={(e) => {
-                  setUnionStat(parseInt(e.target.value));
+                  setUnionStat(e.target.value);
                 }}
               />
             </OtherContainer>
@@ -415,8 +429,9 @@ function CommonInput() {
                 min={1}
                 placeholder="하이퍼스탯으로 증가한 주스텟"
                 title="하이퍼스텟을 찍어서 '증가한' 주스텟 입력"
+                defaultValue={hyperStat}
                 onChange={(e) => {
-                  setHyperStat(parseInt(e.target.value));
+                  setHyperStat(e.target.value);
                 }}
               />
             </OtherContainer>

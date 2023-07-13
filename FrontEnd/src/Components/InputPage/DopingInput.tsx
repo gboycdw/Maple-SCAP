@@ -168,7 +168,7 @@ function DopingInput() {
                   } else {
                     value = parseInt(e.target.value);
                   }
-                  setNoblessBossValue(value);
+                  setNoblessBossValue(value.toString());
                 }}
               />
             </div>
@@ -203,7 +203,7 @@ function DopingInput() {
                   } else {
                     value = parseInt(e.target.value);
                   }
-                  setNoblessDmgValue(value);
+                  setNoblessDmgValue(value.toString());
                 }}
               />
             </div>
@@ -241,7 +241,7 @@ function DopingInput() {
                   } else {
                     value = parseInt(e.target.value);
                   }
-                  setNoblessCriDmgValue(value);
+                  setNoblessCriDmgValue(value.toString());
                 }}
               />
             </div>
@@ -279,7 +279,7 @@ function DopingInput() {
                   } else {
                     value = parseInt(e.target.value);
                   }
-                  setNoblessIgnoreValue(value);
+                  setNoblessIgnoreValue(value.toString());
                 }}
               />
             </div>
@@ -509,7 +509,7 @@ function DopingInput() {
                 } else {
                   value = parseInt(e.target.value);
                 }
-                setDopingStatPotionValue(value);
+                setDopingStatPotionValue(value.toString());
               }}
             />
           </OtherContainer>
