@@ -17,102 +17,164 @@ function InputPage() {
   const navigate = useNavigate();
 
   // 어빌리티 상태관리
-  const [firstAbility] = useRecoilState(AbilityState.firstAbilityState);
-  const [firstValue] = useRecoilState(AbilityState.firstValueState);
-  const [secondAbility] = useRecoilState(AbilityState.secondAbilityState);
-  const [secondValue] = useRecoilState(AbilityState.secondValueState);
-  const [thirdAbility] = useRecoilState(AbilityState.thirdAbilityState);
-  const [thirdValue] = useRecoilState(AbilityState.thirdValueState);
+  const [firstAbility, setFirstAbility] = useRecoilState(
+    AbilityState.firstAbilityState
+  );
+  const [firstValue, setFirstValue] = useRecoilState(
+    AbilityState.firstValueState
+  );
+  const [secondAbility, setSecondAbility] = useRecoilState(
+    AbilityState.secondAbilityState
+  );
+  const [secondValue, setSecondValue] = useRecoilState(
+    AbilityState.secondValueState
+  );
+  const [thirdAbility, setThirdAbility] = useRecoilState(
+    AbilityState.thirdAbilityState
+  );
+  const [thirdValue, setThirdValue] = useRecoilState(
+    AbilityState.thirdValueState
+  );
 
   // 특수 정보 관리
-  const [reboot] = useRecoilState(SpecialState.rebootState);
-  const [genesis] = useRecoilState(SpecialState.genesisState);
-  const [combat] = useRecoilState(SpecialState.combatState);
-  const [mugongSoul] = useRecoilState(SpecialState.mugongSoulState);
-  const [useRuinForceShild] = useRecoilState(
+  const [reboot, setReboot] = useRecoilState(SpecialState.rebootState);
+  const [genesis, setGenesis] = useRecoilState(SpecialState.genesisState);
+  const [combat, setCombat] = useRecoilState(SpecialState.combatState);
+  const [mugongSoul, setMugongSoul] = useRecoilState(
+    SpecialState.mugongSoulState
+  );
+  const [useRuinForceShild, setUseRuinForceShild] = useRecoilState(
     SpecialState.useRuinForceShildState
   );
-  const [epiSoul] = useRecoilState(SpecialState.epiSoulState);
-  const [oneHandSword] = useRecoilState(SpecialState.oneHandSwordState);
+  const [epiSoul, setEpiSoul] = useRecoilState(SpecialState.epiSoulState);
+  const [oneHandSword, setOneHandSword] = useRecoilState(
+    SpecialState.oneHandSwordState
+  );
 
   // 스텟 입력 관리
-  const [level] = useRecoilState(StatState.levelState);
-  const [myClass] = useRecoilState(StatState.myClassState);
-  const [hp] = useRecoilState(StatState.hpState);
-  const [str] = useRecoilState(StatState.strState);
-  const [dex] = useRecoilState(StatState.dexState);
-  const [int] = useRecoilState(StatState.intState);
-  const [luk] = useRecoilState(StatState.lukState);
-  const [noYongsaStat] = useRecoilState(StatState.noYongsaStatState);
-  const [simbolStat] = useRecoilState(StatState.simbolStatState);
-  const [abilityStat] = useRecoilState(StatState.abilityStatState);
-  const [unionStat] = useRecoilState(StatState.unionStatState);
-  const [hyperStat] = useRecoilState(StatState.hyperStatState);
+  const [level, setLevel] = useRecoilState(StatState.levelState);
+  const [myClass, setMyClass] = useRecoilState(StatState.myClassState);
+  const [hp, setHp] = useRecoilState(StatState.hpState);
+  const [str, setStr] = useRecoilState(StatState.strState);
+  const [dex, setDex] = useRecoilState(StatState.dexState);
+  const [int, setInt] = useRecoilState(StatState.intState);
+  const [luk, setLuk] = useRecoilState(StatState.lukState);
+  const [noYongsaStat, setNoYongsaStat] = useRecoilState(
+    StatState.noYongsaStatState
+  );
+  const [simbolStat, setSimbolStat] = useRecoilState(StatState.simbolStatState);
+  const [abilityStat, setAbilityStat] = useRecoilState(
+    StatState.abilityStatState
+  );
+  const [unionStat, setUnionStat] = useRecoilState(StatState.unionStatState);
+  const [hyperStat, setHyperStat] = useRecoilState(StatState.hyperStatState);
 
   // 상세스텟 입력 관리
-  const [higherAtk] = useRecoilState(DetailState.higherAtkState);
-  const [lowerAtk] = useRecoilState(DetailState.lowerAtkState);
-  const [dmg] = useRecoilState(DetailState.dmgState);
-  const [bossDmg] = useRecoilState(DetailState.bossDmgState);
-  const [buffDuration] = useRecoilState(DetailState.buffDurationState);
-  const [ignoreDef] = useRecoilState(DetailState.ignoreDefState);
-  const [criticalDmg] = useRecoilState(DetailState.criticalDmgState);
-  const [critical] = useRecoilState(DetailState.criticalState);
-  const [weaponAtk] = useRecoilState(DetailState.weaponAtkState);
-  const [atkPercent] = useRecoilState(DetailState.atkPercentState);
-  const [mercedesUnion] = useRecoilState(DetailState.mercedesUnionState);
-  const [wildhunterUnion] = useRecoilState(DetailState.wildhunterUnionState);
+  const [higherAtk, setHigherAtk] = useRecoilState(DetailState.higherAtkState);
+  const [lowerAtk, setLowerAtk] = useRecoilState(DetailState.lowerAtkState);
+  const [dmg, setDmg] = useRecoilState(DetailState.dmgState);
+  const [bossDmg, setBossDmg] = useRecoilState(DetailState.bossDmgState);
+  const [buffDuration, setBuffDuration] = useRecoilState(
+    DetailState.buffDurationState
+  );
+  const [ignoreDef, setIgnoreDef] = useRecoilState(DetailState.ignoreDefState);
+  const [criticalDmg, setCriticalDmg] = useRecoilState(
+    DetailState.criticalDmgState
+  );
+  const [critical, setCritical] = useRecoilState(DetailState.criticalState);
+  const [weaponAtk, setWeaponAtk] = useRecoilState(DetailState.weaponAtkState);
+  const [atkPercent, setAtkPercent] = useRecoilState(
+    DetailState.atkPercentState
+  );
+  const [mercedesUnion, setMercedesUnion] = useRecoilState(
+    DetailState.mercedesUnionState
+  );
+  const [wildhunterUnion, setWildhunterUnion] = useRecoilState(
+    DetailState.wildhunterUnionState
+  );
 
   // 링크 스킬 관리
-  const [magicianLink] = useRecoilState(LinkState.magicianLinkState);
-  const [thiefLink] = useRecoilState(LinkState.thiefLinkState);
-  const [kadenaLink] = useRecoilState(LinkState.kadenaLinkState);
-  const [illiumLink] = useRecoilState(LinkState.illiumLinkState);
-  const [arkLink] = useRecoilState(LinkState.arkLinkState);
-  const [kainLink] = useRecoilState(LinkState.kainLinkState);
+  const [magicianLink, setMagicianLink] = useRecoilState(
+    LinkState.magicianLinkState
+  );
+  const [thiefLink, setThiefLink] = useRecoilState(LinkState.thiefLinkState);
+  const [kadenaLink, setKadenaLink] = useRecoilState(LinkState.kadenaLinkState);
+  const [illiumLink, setIlliumLink] = useRecoilState(LinkState.illiumLinkState);
+  const [arkLink, setArkLink] = useRecoilState(LinkState.arkLinkState);
+  const [kainLink, setKainLink] = useRecoilState(LinkState.kainLinkState);
 
   // 도핑 관리
-  const [noblessBoss] = useRecoilState(DopingState.noblessBossState);
-  const [noblessBossValue] = useRecoilState(DopingState.noblessBossValueState);
-  const [noblessDmg] = useRecoilState(DopingState.noblessDmgState);
-  const [noblessDmgValue] = useRecoilState(DopingState.noblessDmgValueState);
-  const [noblessCriDmg] = useRecoilState(DopingState.noblessCriDmgState);
-  const [noblessCriDmgValue] = useRecoilState(
+  const [noblessBoss, setNoblessBoss] = useRecoilState(
+    DopingState.noblessBossState
+  );
+  const [noblessBossValue, setNoblessBossValue] = useRecoilState(
+    DopingState.noblessBossValueState
+  );
+  const [noblessDmg, setNoblessDmg] = useRecoilState(
+    DopingState.noblessDmgState
+  );
+  const [noblessDmgValue, setNoblessDmgValue] = useRecoilState(
+    DopingState.noblessDmgValueState
+  );
+  const [noblessCriDmg, setNoblessCriDmg] = useRecoilState(
+    DopingState.noblessCriDmgState
+  );
+  const [noblessCriDmgValue, setNoblessCriDmgValue] = useRecoilState(
     DopingState.noblessCriDmgValueState
   );
-  const [noblessIgnore] = useRecoilState(DopingState.noblessIgnoreState);
-  const [noblessIgnoreValue] = useRecoilState(
+  const [noblessIgnore, setNoblessIgnore] = useRecoilState(
+    DopingState.noblessIgnoreState
+  );
+  const [noblessIgnoreValue, setNoblessIgnoreValue] = useRecoilState(
     DopingState.noblessIgnoreValueState
   );
-  const [herosHawl] = useRecoilState(DopingState.herosHawlState);
-  const [dopingShiningRed] = useRecoilState(DopingState.dopingShiningRedState);
-  const [dopingSuperPower] = useRecoilState(DopingState.dopingSuperPowerState);
-  const [dopingExtreme] = useRecoilState(DopingState.dopingExtremeState);
-  const [dopingGuildBlessing] = useRecoilState(
+  const [herosHawl, setHerosHawl] = useRecoilState(DopingState.herosHawlState);
+  const [dopingShiningRed, setDopingShiningRed] = useRecoilState(
+    DopingState.dopingShiningRedState
+  );
+  const [dopingSuperPower, setDopingSuperPower] = useRecoilState(
+    DopingState.dopingSuperPowerState
+  );
+  const [dopingExtreme, setDopingExtreme] = useRecoilState(
+    DopingState.dopingExtremeState
+  );
+  const [dopingGuildBlessing, setDopingGuildBlessing] = useRecoilState(
     DopingState.dopingGuildBlessingState
   );
-  const [dopingUnionsPower] = useRecoilState(
+  const [dopingUnionsPower, setDopingUnionsPower] = useRecoilState(
     DopingState.dopingUnionsPowerState
   );
-  const [dopingUrus] = useRecoilState(DopingState.dopingUrusState);
+  const [dopingUrus, setDopingUrus] = useRecoilState(
+    DopingState.dopingUrusState
+  );
 
   // 2비약 선택
-  const [dopingBigHero] = useRecoilState(DopingState.dopingBigHeroState);
-  const [dopingLegendHero] = useRecoilState(DopingState.dopingLegendHeroState);
-  const [dopingJangBi] = useRecoilState(DopingState.dopingJangBiState);
+  const [dopingBigHero, setDopingBigHero] = useRecoilState(
+    DopingState.dopingBigHeroState
+  );
+  const [dopingLegendHero, setDopingLegendHero] = useRecoilState(
+    DopingState.dopingLegendHeroState
+  );
+  const [dopingJangBi, setDopingJangBi] = useRecoilState(
+    DopingState.dopingJangBiState
+  );
 
   // 뿌리기 선택
-  const [dopingFish] = useRecoilState(DopingState.dopingFishState);
-  const [dopingRebootAtkPotion] = useRecoilState(
+  const [dopingFish, setDopingFish] = useRecoilState(
+    DopingState.dopingFishState
+  );
+  const [dopingRebootAtkPotion, setDopingRebootAtkPotion] = useRecoilState(
     DopingState.dopingRebootAtkPotionState
   );
-  const [dopingDragonsMeal] = useRecoilState(
+  const [dopingDragonsMeal, setDopingDragonsMeal] = useRecoilState(
     DopingState.dopingDragonsMealState
   );
 
   // 스텟 물약
-  const [dopingStatPotion] = useRecoilState(DopingState.dopingStatPotionState);
-  const [dopingStatPotionValue] = useRecoilState(
+  const [dopingStatPotion, setDopingStatPotion] = useRecoilState(
+    DopingState.dopingStatPotionState
+  );
+  const [dopingStatPotionValue, setDopingStatPotionValue] = useRecoilState(
     DopingState.dopingStatPotionValueState
   );
 
@@ -156,7 +218,9 @@ function InputPage() {
         atkPercent: atkPercent,
         mercedesUnion: mercedesUnion,
         wildhunterUnion: wildhunterUnion,
-        // 어빌리티
+      },
+      // 어빌리티
+      ability: {
         firstAbility: [firstAbility, firstValue],
         secondAbility: [secondAbility, secondValue],
         thirdAbility: [thirdAbility, thirdValue],
@@ -198,6 +262,76 @@ function InputPage() {
     return data;
   }
 
+  // 데이터 초기화 함수
+  function resetData() {
+    setFirstAbility("");
+    setFirstValue("");
+    setSecondAbility("");
+    setSecondValue("");
+    setThirdAbility("");
+    setThirdValue("");
+    setReboot(false);
+    setGenesis(false);
+    setCombat(true);
+    setMugongSoul("");
+    setUseRuinForceShild(false);
+    setEpiSoul("");
+    setOneHandSword(false);
+    setLevel("");
+    setMyClass("");
+    setHp("");
+    setStr("");
+    setDex("");
+    setInt("");
+    setLuk("");
+    setNoYongsaStat("");
+    setSimbolStat("");
+    setAbilityStat("");
+    setUnionStat("");
+    setHyperStat("");
+    setHigherAtk("");
+    setLowerAtk("");
+    setDmg("");
+    setBossDmg("");
+    setBuffDuration("");
+    setIgnoreDef("");
+    setCriticalDmg("");
+    setCritical("");
+    setWeaponAtk("");
+    setAtkPercent("");
+    setMercedesUnion("");
+    setWildhunterUnion("");
+    setMagicianLink("");
+    setThiefLink("");
+    setKadenaLink("");
+    setIlliumLink("");
+    setArkLink("");
+    setKainLink("");
+    setNoblessBoss(false);
+    setNoblessBossValue("");
+    setNoblessDmg(false);
+    setNoblessDmgValue("");
+    setNoblessCriDmg(false);
+    setNoblessCriDmgValue("");
+    setNoblessIgnore(false);
+    setNoblessIgnoreValue("");
+    setHerosHawl(false);
+    setDopingShiningRed(false);
+    setDopingSuperPower(false);
+    setDopingExtreme(false);
+    setDopingGuildBlessing(false);
+    setDopingUnionsPower(false);
+    setDopingUrus(false);
+    setDopingBigHero(false);
+    setDopingLegendHero(false);
+    setDopingJangBi(false);
+    setDopingFish(false);
+    setDopingRebootAtkPotion(false);
+    setDopingDragonsMeal(false);
+    setDopingStatPotion(false);
+    setDopingStatPotionValue("");
+  }
+
   return (
     <div
       style={{
@@ -209,9 +343,7 @@ function InputPage() {
       <StyledContainer>
         <StyledDiv>
           <CommonInput />
-          {/* 여기서부터 중앙 페이지 */}
           <DetailInput />
-          {/* 여기서부터 우측 페이지 */}
           <DopingInput />
         </StyledDiv>
         <div>
@@ -224,7 +356,8 @@ function InputPage() {
             제출하기
           </EndButton>
           <EndButton
-            onClick={(e) => {
+            onClick={() => {
+              resetData();
               window.location.reload();
             }}
           >
