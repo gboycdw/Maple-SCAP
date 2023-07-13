@@ -61,7 +61,7 @@ export const hyperStatState = atom<number>({
   default: 0,
 });
 
-export const statInputStateObject = {
+export const StatState = {
   levelState,
   myClassState,
   hpState,

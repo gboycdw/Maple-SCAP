@@ -36,7 +36,7 @@ export const oneHandSwordState = atom<boolean>({
   default: false,
 });
 
-export const specialInfoStateObject = {
+export const SpecialState = {
   rebootState,
   genesisState,
   combatState,

@@ -32,7 +32,7 @@ export const kainLinkState = atom<number>({
   default: 0,
 });
 
-export const linkSkillStateObject = {
+export const LinkState = {
   magicianLinkState,
   thiefLinkState,
   kadenaLinkState,

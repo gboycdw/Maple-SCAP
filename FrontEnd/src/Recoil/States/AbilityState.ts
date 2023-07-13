@@ -47,7 +47,7 @@ export const thirdValueState = atom<string>({
   default: "",
 });
 
-export const abilityStateObject = {
+export const AbilityState = {
   firstAbilityState,
   firstOptionState,
   firstValueState,

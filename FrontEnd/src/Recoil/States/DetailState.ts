@@ -61,7 +61,7 @@ export const wildhunterUnionState = atom<number>({
   default: 0,
 });
 
-export const detailedStatsState = {
+export const DetailState = {
   higherAtkState,
   lowerAtkState,
   dmgState,

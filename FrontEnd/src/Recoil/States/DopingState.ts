@@ -119,7 +119,7 @@ export const dopingStatPotionValueState = atom<number>({
   default: 0,
 });
 
-export const dopingStateObject = {
+export const DopingState = {
   noblessBossState,
   noblessBossValueState,
   noblessDmgState,
