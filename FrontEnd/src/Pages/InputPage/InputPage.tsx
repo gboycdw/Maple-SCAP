@@ -273,9 +273,9 @@ function InputPage() {
     setReboot(false);
     setGenesis(false);
     setCombat(true);
-    setMugongSoul("");
+    setMugongSoul("0");
     setUseRuinForceShild(false);
-    setEpiSoul("");
+    setEpiSoul("0");
     setOneHandSword(false);
     setLevel("");
     setMyClass("");
