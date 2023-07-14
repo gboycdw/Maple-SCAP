@@ -24,7 +24,7 @@ export const combatState = atom<boolean>({
 
 export const mugongSoulState = atom<string>({
   key: "mugongSoul",
-  default: "",
+  default: "0",
   effects_UNSTABLE: [persistAtom],
 });
 
@@ -36,7 +36,7 @@ export const useRuinForceShildState = atom<boolean>({
 
 export const epiSoulState = atom<string>({
   key: "epiSoul",
-  default: "",
+  default: "0",
   effects_UNSTABLE: [persistAtom],
 });
 

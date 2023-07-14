@@ -105,20 +105,22 @@ function CommonInput() {
                 </StyledBuffButton>
                 <StyledBuffButton
                   onClick={() => {
-                    if (parseInt(mugongSoul) <= 1) {
-                      setMugongSoul(mugongSoul + 1);
-                    } else if (parseInt(mugongSoul) === 2) {
-                      setMugongSoul("");
+                    if (mugongSoul === "0") {
+                      setMugongSoul("1");
+                    } else if (mugongSoul === "1") {
+                      setMugongSoul("2");
+                    } else {
+                      setMugongSoul("0");
                     }
                   }}
                 >
-                  {mugongSoul === "" ? (
+                  {mugongSoul === "0" ? (
                     <SelectedImg
                       src="./images/soul_mugong_no.png"
                       alt="무공소울X"
                       title="무공소울X"
                     />
-                  ) : parseInt(mugongSoul) === 1 ? (
+                  ) : mugongSoul === "1" ? (
                     <SelectedImg
                       src="./images/soul_mugong.png"
                       alt="무공1렙"
@@ -166,20 +168,22 @@ function CommonInput() {
                 {myClass === "데몬어벤져" ? (
                   <StyledBuffButton
                     onClick={() => {
-                      if (parseInt(epiSoul) <= 1) {
-                        setEpiSoul((parseInt(epiSoul) + 1).toString());
-                      } else if (parseInt(epiSoul) === 2) {
-                        setEpiSoul("");
+                      if (epiSoul === "0") {
+                        setEpiSoul("1");
+                      } else if (epiSoul === "1") {
+                        setEpiSoul("2");
+                      } else {
+                        setEpiSoul("0");
                       }
                     }}
                   >
-                    {epiSoul === "" ? (
+                    {epiSoul === "0" ? (
                       <SelectedImg
                         src="./images/soul_epi_no.png"
                         alt="에피X"
                         title="에피네아 소울 미사용"
                       />
-                    ) : parseInt(epiSoul) === 1 ? (
+                    ) : epiSoul === "1" ? (
                       <SelectedImg
                         src="./images/soul_epi.png"
                         alt="에피1렙"
