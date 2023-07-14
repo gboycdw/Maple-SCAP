@@ -92,12 +92,16 @@ function DopingInput() {
                 setHerosHawl(true);
                 setDopingShiningRed(true);
                 setDopingBigHero(true);
+                setDopingLegendHero(false);
+                setDopingJangBi(false);
                 setDopingSuperPower(true);
                 setDopingExtreme(true);
                 setDopingGuildBlessing(true);
                 setDopingUnionsPower(true);
                 setDopingUrus(true);
                 setDopingFish(true);
+                setDopingRebootAtkPotion(false);
+                setDopingDragonsMeal(false);
                 setDopingStatPotion(true);
               }}
             >
@@ -607,9 +611,13 @@ const DopingSelectButton = styled.button`
 
 const NonSelectedImg = styled.img`
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
+  width: 37px;
+  height: 28px;
 `;
 
 const SelectedImg = styled.img`
   /* border: 1px solid red; */
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.4);
+  width: 37px;
+  height: 28px;
 `;
